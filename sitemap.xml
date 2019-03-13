@@ -3,17 +3,17 @@
 
 
     <sitemap>
-        <loc>https://letsgotoplay.github.io/yulblog/post-sitemap.xml</loc>
+        <loc>https://letsgotoplay.github.io/post-sitemap.xml</loc>
         <lastmod>2019-03-13T15:53:55.739Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>https://letsgotoplay.github.io/yulblog/page-sitemap.xml</loc>
+        <loc>https://letsgotoplay.github.io/page-sitemap.xml</loc>
         <lastmod>2019-03-13T14:22:34.962Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>https://letsgotoplay.github.io/yulblog/tag-sitemap.xml</loc>
+        <loc>https://letsgotoplay.github.io/tag-sitemap.xml</loc>
         <lastmod>2019-03-13T15:53:55.739Z</lastmod>
     </sitemap>
 
