@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/yulblog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Java11功能简介 - Ground | 下地
+        
+    </title>
+
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/Java11功能简介/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/yulblog/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/yulblog/css/highlight.css">
+
+    <link rel="stylesheet" href="/yulblog/css/widget.css">
+
+    <link rel="stylesheet" href="/yulblog/css/rocket.css">
+
+    <link rel="stylesheet" href="/yulblog/css/signature.css">
+
+    <link rel="stylesheet" href="/yulblog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('./../../img/default-bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>Java11功能简介</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yul on
+                            2019-03-29
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/yulblog/">Ground</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/yulblog/">Home</a>
+                    </li>
+                   
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/yulblog/tags/">Tags</a>
+                        </li>
+                    
+                     
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/yulblog/archive/">Archives</a>
+                        </li>
+                    
+                    
+
+                        
+                    
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/yulblog/about/">About</a>
+                        </li>
+                    
+                    
+
+                        
+                    
+
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="为什么是现在要聊聊java11">为什么是现在要聊聊java11</h1>
+<h2 id="版本">版本</h2>
+<p>现在众多产品依然使用java8于production环境，但是2019年一月oracle已经<strong>终止</strong>了商业用户long-term support（简称lts），下一步是于2020年12月终止个人用户的lts。这意味着Java新版本升级将要成为必然。</p>
+<p>值得一说的是现在Java每6个月就会发布一个版本，并且每三年会有一个long-term-support。 这也就是为什么Java现在版本升级这么快的原因。比如今年是Java11的lts的启动年，那么到2021年的Java17会是下一个lts版本。 所以了解Java11有哪些新功能对我们的coding和将来的Java升级是大有好处的。</p>
+<h2 id="java11-features">Java11 Features</h2>
+<ul>
+<li>Nest-Based Access Control
+<ul>
+<li>JVM update</li>
+</ul>
+</li>
+<li>Dynamic Class File Constants
+<ul>
+<li>Compiler update</li>
+</ul>
+</li>
+<li>Improve Aarch64 Intrinsics
+<ul>
+<li>Improving the existing string and array intrinsics for AArch64 cpu processors</li>
+</ul>
+</li>
+<li>Remove the Java EE and CORBA Modules
+<ul>
+<li>mini size from SE version</li>
+</ul>
+</li>
+<li>Key Agreement with Curve25519 and Curve448
+<ul>
+<li>Implementation of the cryptographic graphics schemes</li>
+</ul>
+</li>
+<li>Unicode 10
+<ul>
+<li>Updated the existing platform APIs to version 10.0</li>
+</ul>
+</li>
+<li>Deprecate the Rhino JavaScript Engine</li>
+<li>Deprecate the Pack200 Tools and API</li>
+<li>Transport Layer Security (TLS) 1.3
+<ul>
+<li>TLS1.3 standard implementation</li>
+</ul>
+</li>
+<li>Low overhead heap profiling
+<ul>
+<li>JVMTI tool spport upgrade</li>
+</ul>
+</li>
+<li>ChaCha20 and Poly1305 Cryptographic Algorithms
+<ul>
+<li>Implementation of a stream encryption</li>
+</ul>
+</li>
+</ul>
+<h2 id="interesting-features">Interesting Features:</h2>
+<ul>
+<li>
+<p>Epsilon: A No-Op Garbage Collector</p>
+<ul>
+<li>mainly for researcher,performance tester to set JVM without any GC.</li>
+<li>Also interestly how we can do a <a href="https://www.infoq.com/news/2016/05/log4j-garbage-free" target="_blank" rel="noopener">application without need of GC like Log4J</a></li>
+</ul>
+</li>
+<li>
+<p>ZGC: A Scalable Low-Latency Garbage Collector<br>
+(Experimental)</p>
+</li>
+<li>
+<p>G1: pararell GC</p>
+</li>
+<li>
+<p>Flight Recorder</p>
+<ul>
+<li><a href="https://openjdk.java.net/jeps/328" target="_blank" rel="noopener">record-java-application-events</a></li>
+</ul>
+</li>
+<li>
+<p>HTTP Client (default)</p>
+<ul>
+<li>新的http-client 跟像其他语言的api了</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// two ways of new http client, sync way as default, or use async API</span></span><br><span class="line"><span class="keyword">var</span> request = HttpRequest.newBuilder()</span><br><span class="line">  .uri(URI.create(<span class="string">"https://www.example.com"</span>))</span><br><span class="line">  .GET()</span><br><span class="line">  .build();</span><br><span class="line"><span class="keyword">var</span> client = HttpClient.newHttpClient();</span><br><span class="line">HttpResponse&lt;String&gt; response = client.send(request, HttpResponse.BodyHandlers.ofString());</span><br><span class="line">System.out.println(response.body());</span><br><span class="line"></span><br><span class="line"><span class="comment">// or use Async way</span></span><br><span class="line"><span class="keyword">var</span> request = HttpRequest.newBuilder()</span><br><span class="line">  .uri(URI.create(<span class="string">"https://winterbe.com"</span>))</span><br><span class="line">  .build(); <span class="comment">// We can omit the .GET() call as it's the default request method.</span></span><br><span class="line"><span class="keyword">var</span> client = HttpClient.newHttpClient();</span><br><span class="line">client.sendAsync(request, HttpResponse.BodyHandlers.ofString())</span><br><span class="line">    .thenApply(HttpResponse::body)</span><br><span class="line">    .thenAccept(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">// and other calls like post() in request and build a basic auth while build http client. go check API</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Local Variable Syntax for Lambda Parameters</p>
+<ul>
+<li>用var来定义本地变量 和lambda一起 省不少时间</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//before Java 10</span></span><br><span class="line"> String text = <span class="string">"Hello Java 9"</span>;</span><br><span class="line"> <span class="comment">//Java 11</span></span><br><span class="line"> <span class="keyword">var</span> text = <span class="string">"Hello Java 11"</span>;</span><br><span class="line"> <span class="keyword">var</span> text = <span class="string">"Hello Java 11"</span>;</span><br><span class="line"> text = <span class="number">23</span>;  <span class="comment">// Incompatible types</span></span><br><span class="line"> <span class="keyword">final</span> <span class="keyword">var</span> text = <span class="string">"Banana"</span>;</span><br><span class="line"> text = <span class="string">"Joe"</span>;   <span class="comment">// Cannot assign a value to final variable 'text'</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// Cannot infer type:</span></span><br><span class="line"> <span class="keyword">var</span> a; <span class="comment">// Cannot infer type</span></span><br><span class="line"> <span class="keyword">var</span> nothing = <span class="keyword">null</span>; <span class="comment">// Cannot infer type</span></span><br><span class="line"> <span class="keyword">var</span> lambda = () -&gt; System.out.println(<span class="string">"Pity!"</span>); <span class="comment">// Cannot infer type</span></span><br><span class="line"> <span class="keyword">var</span> method = <span class="keyword">this</span>::someMethod; <span class="comment">// Cannot infer type</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// eaier</span></span><br><span class="line"> <span class="keyword">var</span> myList = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, List&lt;Integer&gt;&gt;&gt;();</span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">var</span> current : myList) &#123;</span><br><span class="line">     <span class="comment">// current is infered to type: Map&lt;String, List&lt;Integer&gt;&gt;</span></span><br><span class="line">     System.out.println(current);</span><br><span class="line"> &#125;</span><br><span class="line">   <span class="comment">// Inference of lambda parameters</span></span><br><span class="line">Consumer&lt;String&gt; printer = (<span class="keyword">var</span> s) -&gt; System.out.println(s); </span><br><span class="line"><span class="comment">// but no mix of "var" and declared types possible</span></span><br><span class="line"><span class="comment">// BiConsumer&lt;String, String&gt; printer = (var s1, String s2) -&gt; System.out.println(s1 + " " + s2);</span></span><br><span class="line"><span class="comment">// Useful for Type Annotations</span></span><br><span class="line">BiConsumer&lt;String, String&gt; printer = (<span class="meta">@Nonnull</span> <span class="keyword">var</span> s1, <span class="meta">@Nullable</span> <span class="keyword">var</span> s2) -&gt; System.out.println(s1 + (s2 == <span class="keyword">null</span> ? <span class="string">""</span> : <span class="string">" "</span> + s2));</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Launch Single-File Source Code Programs</p>
+<ul>
+<li>Java 文件可以直接启动 或者用类似shell 脚本启动</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># java HelloWorld.java</span></span><br><span class="line">// instead of</span><br><span class="line"><span class="comment"># javac HelloWorld.java</span></span><br><span class="line"><span class="comment"># java -cp . hello.World</span></span><br><span class="line">// or <span class="built_in">declare</span> </span><br><span class="line"><span class="comment">#!/path/to/java --source version</span></span><br><span class="line"><span class="comment"># ./HelloWorld.java</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>new APIs</p>
+<ul>
+<li>参考</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// Immutable List Creation</span></span><br><span class="line"><span class="keyword">var</span> list = List.of(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>);</span><br><span class="line"><span class="keyword">var</span> copy = List.copyOf(list);</span><br><span class="line">System.out.println(list == copy);   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//map</span></span><br><span class="line"><span class="keyword">var</span> map = Map.of(<span class="string">"A"</span>, <span class="number">1</span>, <span class="string">"B"</span>, <span class="number">2</span>);</span><br><span class="line">  System.out.println(map);    <span class="comment">// &#123;B=2, A=1&#125;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Stream</span></span><br><span class="line">  Stream.ofNullable(<span class="keyword">null</span>).count();</span><br><span class="line">  Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">  .dropWhile(n -&gt; n &lt; <span class="number">3</span>)</span><br><span class="line">  .collect(Collectors.toList());  <span class="comment">// [3, 2, 1]</span></span><br><span class="line"></span><br><span class="line">  Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">  .takeWhile(n -&gt; n &lt; <span class="number">3</span>)</span><br><span class="line">  .collect(Collectors.toList());  <span class="comment">// [1, 2]</span></span><br><span class="line">  <span class="comment">//optinal of &amp;&amp; ofNullable</span></span><br><span class="line">  Optional.of(<span class="string">"foo"</span>).orElseThrow();     <span class="comment">// foo</span></span><br><span class="line">  Optional.of(<span class="string">"foo"</span>).stream().count();  <span class="comment">// 1</span></span><br><span class="line">  Optional.ofNullable(<span class="keyword">null</span>)</span><br><span class="line">  .or(() -&gt; Optional.of(<span class="string">"fallback"</span>))</span><br><span class="line">  .get();                           <span class="comment">// fallback</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//String </span></span><br><span class="line"> <span class="string">" "</span>.isBlank();                <span class="comment">// true</span></span><br><span class="line"> <span class="string">" Foo Bar "</span>.strip();          <span class="comment">// "Foo Bar"</span></span><br><span class="line"> <span class="string">" Foo Bar "</span>.stripTrailing();  <span class="comment">// " Foo Bar"</span></span><br><span class="line"> <span class="string">" Foo Bar "</span>.stripLeading();   <span class="comment">// "Foo Bar "</span></span><br><span class="line"> <span class="string">"Java"</span>.repeat(<span class="number">3</span>);             <span class="comment">// "JavaJavaJava"</span></span><br><span class="line"> <span class="string">"A\nB\nC"</span>.lines().count();    <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//InputStreams tranferTo()</span></span><br><span class="line"> <span class="keyword">var</span> classLoader = ClassLoader.getSystemClassLoader();</span><br><span class="line"> <span class="keyword">var</span> inputStream = classLoader.getResourceAsStream(<span class="string">"myFile.txt"</span>);</span><br><span class="line"> <span class="keyword">var</span> tempFile = File.createTempFile(<span class="string">"myFileCopy"</span>, <span class="string">"txt"</span>);</span><br><span class="line"> <span class="keyword">try</span> (<span class="keyword">var</span> outputStream = <span class="keyword">new</span> FileOutputStream(tempFile)) &#123;</span><br><span class="line">     inputStream.transferTo(outputStream);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="future">Future</h2>
+<p>现在已经有了jdk13的beta，主要的新功能如下：</p>
+<ul>
+<li>switch style change</li>
+<li>raw string literal</li>
+</ul>
+<h2 id="notice">Notice</h2>
+<p>注意到了现在的api设计是越来越直接明了，特别是在将要到来<strong>异步</strong>（好题材）的时代，当我们看到一个方法名的时候，我们就已经知道这个方法到底是在干嘛，并且当有多个方法串联的时候，展示在我们面前的一长串都是非常的口语化和容易理解。说到api设计，就想到一个好的api设计的必读资料：<a href="https://wiki.qt.io/API_Design_Principles" target="_blank" rel="noopener">API-design-principles</a></p>
+<p>为什么要一个好的api设计？</p>
+<ul>
+<li>人：team 协同工作， 看着舒服， 提高效率，而不是去一直查这个参数是什么意思。<br>
+举个例子 a.setsomething（true）。不查看具体方法，天知道这是在干什么。效率低下。</li>
+<li>环境： 云容器微服务时代，各个容器，微服务，application之间互相调用。</li>
+</ul>
+<h2 id="reference">Reference:</h2>
+<ul>
+<li><a href="https://www.oracle.com/technetwork/java/java-se-support-roadmap.html" target="_blank" rel="noopener">java-se-support-roadmap</a></li>
+<li><a href="https://dzone.com/articles/interesting-jdk-12-features-to-watch-out-for" target="_blank" rel="noopener">java-12-intersting-features</a></li>
+<li><a href="https://codingcompiler.com/17-new-features-in-java-11-jdk-11-features/" target="_blank" rel="noopener">java-11-new-features</a></li>
+<li><a href="https://www.infoq.com/news/2017/03/java-epsilon-gc" target="_blank" rel="noopener">java-no-gc</a></li>
+<li><a href="https://winterbe.com/posts/2018/09/24/java-11-tutorial/" target="_blank" rel="noopener">java-11-tutorial</a></li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/yulblog/article/领域驱动设计/" data-toggle="tooltip" data-placement="top" title="领域驱动设计（一）">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#为什么是现在要聊聊java11"><span class="toc-nav-text">为什么是现在要聊聊java11</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#版本"><span class="toc-nav-text">版本</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#java11-features"><span class="toc-nav-text">Java11 Features</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#interesting-features"><span class="toc-nav-text">Interesting Features:</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#future"><span class="toc-nav-text">Future</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#notice"><span class="toc-nav-text">Notice</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#reference"><span class="toc-nav-text">Reference:</span></a></li></ol></li></ol>     
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://frienda.org" target="_blank">Dummy Friend A</a></li>
+                    
+                        <li><a href="#" target="_blank">Dummy Friends C</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: '^'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Dummy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Dummy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yul 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Customized by <a href="https://letsgotoplay.github.io/yulblog">Yul</a>   
+                    <br>
+                    <a class="github-button" href="https://github.com/letsgotoplay" aria-label="Follow @Yul on GitHub">Follow</a>
+
+                    <a class="github-button" href="https://github.com/letsgotoplay/" data-icon="octicon-star" aria-label="Star letsgotoplay/ on GitHub">Star</a>
+                   <!-- <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=letsgotoplay&repo=&type=&count=" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/yulblog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/yulblog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/yulblog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://letsgotoplay.github.io/yulblog/yulblog/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/yulblog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/yulblog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<!-- <img src="https://letsgotoplay.github.io/yulblog/yulblog/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Eclipse合金装备 - Ground | 下地
+          领域驱动设计（一） - Ground | 下地
         
     </title>
 
-    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/Full-Eclipse-Gears/">
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/领域驱动设计/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
@@ -86,14 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/yulblog/tags/#tooltips" title="tooltips">tooltips</a>
+                              <a class="tag" href="/yulblog/tags/#DDD" title="DDD">DDD</a>
                             
                         </div>
-                        <h1>Eclipse合金装备</h1>
+                        <h1>领域驱动设计（一）</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Yul on
-                            2019-03-18
+                            2019-03-29
                         </span>
                     </div>
                 
@@ -234,107 +234,96 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="eclipse合金装备">Eclipse合金装备</h1>
-<p>纯新手，刚入门，装备都是自己打的，慢慢合的，全部穿起来可以勉强出门打个稻草人。如果有什么神器出售，黑科技分享的，欢迎代价密我。<br>
-<br><br>
-<a class="github-button" href="https://github.com/<%= config.github_user %>" aria-label="Follow @<%= config.author %> on GitHub" target="_blank" rel="noopener">contact</a></p>
-<hr>
-<h2 id="eclipse-必备功能">Eclipse 必备功能</h2>
-<blockquote>
-<p>工欲善其事，必先利其器。<br>
-技能不点开，怎么出门和人打招呼。</p>
-</blockquote>
+                <h1 id="领域驱动设计一">领域驱动设计（一）</h1>
+<p>一个古老的逻辑设计想象，继承了OOP, 对解决商业逻辑，实现商业应用，有一些帮助。 作为一名手艺人，总有一些激情想做出一些还行的产品，总有一些理想经过不断的尝试产出一些不错的物件。此设计思想便是让手艺人学会一些应该有的思考，谋定而后动。</p>
+<h2 id="why领域">why领域</h2>
+<p>首先领域可以理解为一个课题，就好像数学课。有课代表，老师，简称砖家。 然而手艺人确并不懂数学。但是手艺人却要通过砖家的描述发明解决数学问题的工具，比如，测量仪。如何优雅的设计出测量仪的各个零件，外观长什么样子，测量范围是多少，精确度多少。如果换成做软件，这就是领域驱动设计探讨的问题。并且很多设计思想可以从现实中学到，映射。</p>
+<h2 id="how优雅">how优雅</h2>
+<p>看看一个实际的DIY木板床的例子：</p>
 <ul>
-<li>save actions：自动import，自动加annotation，自动移除不必要的cast&amp;import，自动format。没血没蓝自动加。必须品。
+<li>组件 床头 床尾 支架板 床板 -&gt; 汇总 -&gt; 材料切割清单</li>
+<li>木料选择 -&gt; 材质优劣，用量，预算</li>
+<li>标记组件，打孔位置 -&gt; 汇总 -&gt; 组装图</li>
+<li>辅助工具选择，辅助材料 钉子 等-&gt; 汇总 -&gt; 辅助工具材料清单<br>
+逻辑上来说解决这些问题，我才有信心去diy一个简单的最基本的床。</li>
+</ul>
+<p>那么设计一个最基本的文件系统是如何呢？</p>
 <ul>
-<li>代码再也不会有低级小黄标提醒，组队合作的时候代码format一致，方便code compare/review。</li>
-<li>
-<blockquote>
-<p><img src="save_action.png" alt></p>
-</blockquote>
-</li>
+<li>组件， 文件底层存储读写，文件操作管理，界面，用户群组权限管理 -&gt; 逻辑分类边界</li>
+<li>组装图 -&gt; 数据库，前后端，中间件 -&gt; 架构设计，边界交互</li>
+<li>材料 -&gt; 运行环境，语言，操作系统 -&gt; 花费，经济成本，知识曲线。</li>
+<li>工具类 -&gt; ci，repo，monitor，test -&gt; 辅助开发，质量控制</li>
 </ul>
-</li>
-<li>content assist：自动打怪，配置好了以后，打一个字母就会快速自动提示，选取需要的属性或模版。还要高级自定义favorite。必须品。
-<ul>
-<li>代码提示，效率狂飙，可以其他组合技使用。见下。</li>
-<li>
-<blockquote>
-<p>preference-&gt; search content assist, -&gt; check enable auto activation on -&gt; delay:50, triggers: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._<br>
-select sub tab advanced, make sure template/swt template/java proposals selected.<br>
-add needed favorite util classes/packages, then you can just call static methodname, ide will auto import.</p>
-</blockquote>
-</li>
-<li>
-<blockquote>
-<p><img src="content_assist.png" alt="result"></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>type filter: all package/class in filter不会再出现在content assist里面。这样一些永远不会去选的方法就不会在出现了。比如：java.lang.object和java.awt.*的一堆方法</li>
-<li>formatting options: Preferences &gt; Formatting Options &gt; Off/On Tags 自定义一个基于标准format的profile。
-<ul>
-<li>
-<blockquote>
-<p><img src="format_options.png" alt="format"></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="eclipse-主题外观">Eclipse 主题外观</h2>
-<blockquote>
-<p>人靠衣装马靠鞍，码农搬砖靠外观。<br>
-装备不幻化，哪好意思出门跟人打招呼。</p>
-</blockquote>
-<p>不废话，直接在market place下载<a href="https://marketplace.eclipse.org/content/darkest-dark-theme-devstyle" target="_blank" rel="noopener">darkest dark theme</a><br>
-保护视力，妈妈再也不担心你太爱学习了。<br>
-你可以在Preference &gt; Appearance里面选择回default，如果不喜欢。</p>
-<hr>
-<h2 id="eclipse-强化插件">Eclipse 强化插件</h2>
-<blockquote>
-<p>装备不镶钻，衣服不打孔，武器不强化，战力被碾压</p>
-</blockquote>
+<p>可是diy出来发现很多问题，没用水平仪 床板有高度差。踩上去吱呀作响，木料一块一块并不100%吻合，切割的时候设计太死板，没有预留一点拼接出错的空间。<br>
+因为有些地方用的是无螺纹钉，取出只能破坏木料，要拆床搬家怎么办呢？床底下有大量的空间想改装加个抽屉，发现预留的位置太小了。甚至因为diy没有按照标准尺寸打造，没有合适大小的被子。虽然可以睡了，但是后续问题惨不忍睹，只能自己睡，不好拿出手在朋友面前炫耀一番。</p>
+<p>软件系统依然如此。前人踩过的坑，总结下来一些方面，设计的时候就好像是一个模版，一份清单，大致对照，总能避免很多大方向的问题。配以一些小技巧，小套路，就算能做出一个不错的自己睡着舒服的床。并且有点期待去试试做个更好的。</p>
 <ol>
-<li>lombok 编译自动加入getter setter等等等等template方法，必需品
-<ul>
-<li>直接下载Lombok运行jar，就会自动安装到ide，需要注意的是在你需要Lombok的project property里面开启compiler annotation process。</li>
-<li>如果是maven，gradle,需要加 compileonly Lombok.jar</li>
-</ul>
+<li>
+<p>语言<br>
+现在团队一般是怎么样的呢？特别是国际化以后。<br>
+多开发 -&gt; 少 ba &lt;- 多领域专家<br>
+显而易见时间精力的瓶颈在中间。为什么呢，因为手艺人不懂数学，只好带个翻译。那要去掉中间环节怎么办呢？ 这里就需要一门显示的语言（ubiquitous language）作为桥梁去融合两边的交流。有什么呢？ 依据描述，划出<strong>边界条件</strong>里的名词动作。并用这些划定好的物品为支点进行沟通。就好像一段小对话：<br>
+航空专家：设计一个系统跟踪，导航飞机的航线图，有出发点，降落点，飞行路线。<br>
+搬砖家： 好吧，这么说至少需要三样东西， 出发，降落，飞行路线。所以是 出发点-&gt;路线-&gt;降落点。那飞行高度呢？飞行路线怎么定义呢？<br>
+航空专家：飞机的飞行<strong>航行时</strong>高度都是固定的，飞行路线是很多小段的路线切割而成，每次飞机飞行一段距离就要确定是否偏离，就好像是checkpoint。使得飞机经过checkpoint得到最好的导航/信号/安全方面问题。<br>
+搬砖家：哦，明白了，所以出发点和降落点只是特殊类型的checkpoint。飞行路线由一组checkpoint组成。飞行高度在航行的边界下是constant。</p>
 </li>
-<li>sonarlint 插件必需品
-<ul>
-<li>用了就上瘾，终于知道原来写的有多搓。
-<blockquote>
-<p><img src="sonar_lint.png" alt></p>
-</blockquote>
+<li>
+<p>领域，子领域，边界<br>
+领域只在边界里才有明确的含义。就好像在航行的边界条件下飞行高度才有意义。 领域里可以拆成多子领域。看一张电子商务系统的图：<br>
+<img src="1.png" alt></p>
 </li>
-</ul>
+<li>
+<p>架构<br>
+分层结构。ui层 | application层 | domain领域层 | 基础设施层<br>
+ui层： 用户请求，界面展示。注意它不包含任何商业逻辑。这一层可能会有一些数据校验，但不属于领域。ui层是application层的直接使用者。<br>
+application层： 但是它是domain领域层的直接使用者&amp;&amp;<strong>协调者</strong>，他也没有任何商业逻辑。application层里面存在application service。他的工作可能会有一些安全控制，数据校验，或者事件发动，邮件发送。并且会很大一部分职责是组装数据给ui层。application层是非常轻便的一层，如果你的application层很复杂，需要注意是否你的商业逻辑泄漏到了这一层。<br>
+domain层：边界内的全部商业逻辑。domain service很大一部分职责是处理实现商业逻辑，并且发出命令通知下游使用正确对策处理。<br>
+基础设施层： 如ui层的组件封装， 系统核心core组件封装。基础框架。</p>
 </li>
-<li>yml/json editor 可选品
-<ul>
-<li>更好的编辑常见文档</li>
-</ul>
+<li>
+<p>六边形<br>
+从界面展示到数据库存储，整个数据是流经我们的系统的。界面展示可能多变，可以多端，数据库可能会迁移存储，或者多数据中心，sql/no-sql多类型存储。我们的系统在中间是必经之路。<br>
+六边形就是service-oriented architect更好的说明与升级。<br>
+<img src="2.png" alt></p>
 </li>
 </ol>
-<h2 id="eclipse-打怪操作">Eclipse 打怪操作</h2>
-<blockquote>
-<p>一血五杀平常事，你还质疑我操作？</p>
-</blockquote>
-<p>总纲: 真的过一阵子不用就会忘，所以只记住一个就好了。control + shift + L查看各种骚操作快捷键, 两次进入自定义快捷键页面。实在不行还有鼠标右键。</p>
-<h3 id="tips">tips:</h3>
-<ul>
-<li>直接复制一段代码，粘贴到project package explorer里面，自动生成package，class。</li>
-<li>查找：
-<ul>
-<li>选取class，或者方法，鼠标右键 &gt; reference/declare 查找。</li>
-<li>find in files 查找。</li>
-<li>open type/call hier</li>
-</ul>
+<p>但是面对外部交流复杂度越来越高，如果单一处理，势必会埋下性能隐患。 为了解决这个问题就有了cqrs 读写分离&amp;&amp; eventual consistency最终一致性&amp;&amp;事件驱动event driven architect孕育而生。</p>
+<ol start="5">
+<li>
+<p>entity &amp; value object &amp; 聚合<br>
+领域概念都可以是一个entity，这里并不是在说orm。 entity是一个有独立id的事物。这里也不是数据库表的一个对应，其实大多数数据库表都是应该都一个aggregate聚合物。 比如钱，在钱包的边界里，用户都有自己的钱包，钱包有自己的独立id，但是用户不关心追踪钱包里钞票的id是多少，只要钞票的面值，数量是一样的。换句话说，钞票是无id属性的，100块就是100块，哪一张100不重要。 immutable。每次我用到他的时候我不可能把100块撕成两半。如果我要用50，我只能是新建两张50块的钞票。摧毁100快的钞票。内部属性不能修改。他是value equality或者structure equality。entity是identity equality。 这里钞票就是一个value object。在使用的时候：favor value object to entity。 为什么？ 因为entity的生命周期长，任何改动都有历史可循。而value object无生命周期，要么新建要么摧毁。</p>
 </li>
-</ul>
+<li>
+<p>领域服务<br>
+责任分离。商业逻辑包裹。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> authentic = <span class="keyword">false</span>;</span><br><span class="line">User user =</span><br><span class="line">    DomainRegistry</span><br><span class="line">        .userRepository()</span><br><span class="line">        .userWithUsername(aTenantId, aUsername);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (user != <span class="keyword">null</span>) &#123;</span><br><span class="line">    authentic = user.isAuthentic(aPassword);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> authentic;</span><br></pre></td></tr></table></figure>
+<p>有什么问题呢以上代码？tenant是一个子用户类型。而用户竟然要自己去authenticate。很明显这个责任应该在类似authentication service当中例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">user-descriptor=DomainRegistry</span><br><span class="line">        .authenticationService()</span><br><span class="line">        .authenticate(aTenantId, aUsername, aPassword);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AuthenticationService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDescriptor <span class="title">authenticate</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            TenantId aTenantId,</span></span></span><br><span class="line"><span class="function"><span class="params">            String aUsername,</span></span></span><br><span class="line"><span class="function"><span class="params">            String aPassword)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultEncryptionAuthenticationService</span></span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">AuthenticationService</span> </span>&#123;...&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDescriptor</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>
+<p>领域事件<br>
+任何领域的改变，逻辑都可以变成了显示的。可以有playback history如果把事件存储，可以加listeners as your bussiness expand，领域里上游逻辑和下游逻辑松耦合。<br>
+经常和领域专家交流会听到如此的词：当什么发生的时候，这个也要做，那个可以不做。。这就是很好的领域事件触发点。看个publish/subscribe的简单交互图<br>
+<img src="3.png" alt></p>
+</li>
+<li>
+<p>工厂 &amp; repository<br>
+别忘了用工厂生成非persistent对象，用repo生成storage backup对象。别离了Spring活不了了。</p>
+</li>
+<li>
+<p>设计模式。<br>
+设计模式三大类，是creation还是structure还是behavior。</p>
+</li>
+<li>
+<p>交界集成<br>
+rpc/rest/message 分布式系统的交互。正如六边形一样，如何做好责任分离，多client兼容。<br>
+<img src="4.png" alt></p>
+</li>
+</ol>
+<p>未完待续。。。</p>
 
                 
 
@@ -343,9 +332,13 @@ add needed favorite util classes/packages, then you can just call static methodn
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/yulblog/article/领域驱动设计/" data-toggle="tooltip" data-placement="top" title="领域驱动设计（一）">&larr; Previous Post</a>
+                            <a href="/yulblog/article/Java11功能简介/" data-toggle="tooltip" data-placement="top" title="Java11功能简介">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/yulblog/article/Full-Eclipse-Gears/" data-toggle="tooltip" data-placement="top" title="Eclipse合金装备">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -370,7 +363,7 @@ add needed favorite util classes/packages, then you can just call static methodn
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#eclipse合金装备"><span class="toc-nav-text">Eclipse合金装备</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#eclipse-必备功能"><span class="toc-nav-text">Eclipse 必备功能</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#eclipse-主题外观"><span class="toc-nav-text">Eclipse 主题外观</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#eclipse-强化插件"><span class="toc-nav-text">Eclipse 强化插件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#eclipse-打怪操作"><span class="toc-nav-text">Eclipse 打怪操作</span></a></li></ol></li></ol>     
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#领域驱动设计一"><span class="toc-nav-text">领域驱动设计（一）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#why领域"><span class="toc-nav-text">why领域</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#how优雅"><span class="toc-nav-text">how优雅</span></a></li></ol></li></ol>     
         
         </div>
       </aside>
@@ -390,7 +383,7 @@ add needed favorite util classes/packages, then you can just call static methodn
                     <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/yulblog/tags/#tooltips" title="tooltips">tooltips</a>
+                          <a class="tag" href="/yulblog/tags/#DDD" title="DDD">DDD</a>
                         
                     </div>
                 </section>
