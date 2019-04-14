@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          领域驱动设计（一） - Ground | 下地
+          看建筑画图纸 - Ground | 下地
         
     </title>
 
-    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/领域驱动设计/">
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/看建筑画图纸/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
@@ -86,14 +86,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/yulblog/tags/#DDD" title="DDD">DDD</a>
-                            
                         </div>
-                        <h1>领域驱动设计（一）</h1>
+                        <h1>看建筑画图纸</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Yul on
-                            2019-03-29
+                            2019-04-14
                         </span>
                     </div>
                 
@@ -234,96 +232,52 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="领域驱动设计一">领域驱动设计（一）</h1>
-<p>一个古老的逻辑设计想象，继承了OOP, 对解决商业逻辑，实现商业应用，有一些帮助。 作为一名手艺人，总有一些激情想做出一些还行的产品，总有一些理想经过不断的尝试产出一些不错的物件。此设计思想便是让手艺人学会一些应该有的思考，谋定而后动。</p>
-<h2 id="why领域">why领域</h2>
-<p>首先领域可以理解为一个课题，就好像数学课。有课代表，老师，简称砖家。 然而手艺人确并不懂数学。但是手艺人却要通过砖家的描述发明解决数学问题的工具，比如，测量仪。如何优雅的设计出测量仪的各个零件，外观长什么样子，测量范围是多少，精确度多少。如果换成做软件，这就是领域驱动设计探讨的问题。并且很多设计思想可以从现实中学到，映射。</p>
-<h2 id="how优雅">how优雅</h2>
-<p>看看一个实际的DIY木板床的例子：</p>
-<ul>
-<li>组件 床头 床尾 支架板 床板 -&gt; 汇总 -&gt; 材料切割清单</li>
-<li>木料选择 -&gt; 材质优劣，用量，预算</li>
-<li>标记组件，打孔位置 -&gt; 汇总 -&gt; 组装图</li>
-<li>辅助工具选择，辅助材料 钉子 等-&gt; 汇总 -&gt; 辅助工具材料清单<br>
-逻辑上来说解决这些问题，我才有信心去diy一个简单的最基本的床。</li>
-</ul>
-<p>那么设计一个最基本的文件系统是如何呢？</p>
-<ul>
-<li>组件， 文件底层存储读写，文件操作管理，界面，用户群组权限管理 -&gt; 逻辑分类边界</li>
-<li>组装图 -&gt; 数据库，前后端，中间件 -&gt; 架构设计，边界交互</li>
-<li>材料 -&gt; 运行环境，语言，操作系统 -&gt; 花费，经济成本，知识曲线。</li>
-<li>工具类 -&gt; ci，repo，monitor，test -&gt; 辅助开发，质量控制</li>
-</ul>
-<p>可是diy出来发现很多问题，没用水平仪 床板有高度差。踩上去吱呀作响，木料一块一块并不100%吻合，切割的时候设计太死板，没有预留一点拼接出错的空间。<br>
-因为有些地方用的是无螺纹钉，取出只能破坏木料，要拆床搬家怎么办呢？床底下有大量的空间想改装加个抽屉，发现预留的位置太小了。甚至因为diy没有按照标准尺寸打造，没有合适大小的被子。虽然可以睡了，但是后续问题惨不忍睹，只能自己睡，不好拿出手在朋友面前炫耀一番。</p>
-<p>软件系统依然如此。前人踩过的坑，总结下来一些方面，设计的时候就好像是一个模版，一份清单，大致对照，总能避免很多大方向的问题。配以一些小技巧，小套路，就算能做出一个不错的自己睡着舒服的床。并且有点期待去试试做个更好的。</p>
+                <h1 id="从平房开始看-spring-boot-admin一">从平房开始看 - Spring boot admin(一)</h1>
+<p>Spring boot admin（sba），从简写的名字就可以看出这是一个傻瓜，结构简明的好平房。 所以就从这里开始看吧。<br>
+spring boot admin，有什么功能呢？<br>
+一个中心化的展示器server。会通过client项目里面的Spring actuator的endpoint获取client的信息并可以发出一些Spring actuator允许的一些指令，远程ui界面操控client项目。 所以功能流程图应该是：</p>
+<p>clientA – register – &gt; {serverA}<br>
+clientB – register – &gt; {serverA}</p>
+<p>ServerA – request all clients endpoints --&gt; UI display</p>
+<p>UI control – request controll --&gt; server --&gt; client changes</p>
+<p>功能简单。就⬆️三步。</p>
+<p>想清楚了功能流程图， 接下来就是拆解关键字，划分出功能领域模型：</p>
+<h2 id="client">client</h2>
+<p>client是由spring-boot-admin-client组成。功能领域只有一个： registration。这个lib主要提供registration功能给client项目。所以自然会有一个功能开关，其实也就是常见的spring conditional configuration。<br>
+所以package也简单名了：</p>
+<blockquote>
+<p>com…config包  //实现项目的自动化/可定义条件的配置<br>
+com…registration包 //实现项目的注册功能</p>
+</blockquote>
+<p>由于是基于Spring boot的lib包。所有的object都是用@bean来实现实例化（@bean/@component 的区别），constructor构建。如果属性功能开关开启，auto-config类基于条件被Spring 管理并自动注册全部的功能相关的bean.</p>
+<p>在试想register是怎么实现的：</p>
+<p>如果是servlet 环境 用rest template 发送请求到server注册。<br>
+如果是reactive 环境用web client 发送请求到server注册。</p>
+<p>所以 register(application)是 application register的职责。看如下伪代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//领域驱动 所有的entity object由factory制造</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">application</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">private</span> <span class="title">needed</span>-<span class="title">info</span> <span class="title">info</span></span>; <span class="comment">//minimal required info</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> metadata meta <span class="comment">//customized info</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//getter </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//setter</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ApplicationFactory</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">Application</span> <span class="title">create</span>(<span class="title">params</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultApplicationFactory</span> <span class="keyword">implements</span> <span class="title">ApplicationFactory</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletApplicationFactory</span> <span class="keyword">extends</span> <span class="title">DefaultApplicationFactory</span></span>&#123;&#125; </span><br><span class="line"><span class="comment">//any factory needed for traditional servlet env or reactive env</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">// who will use this application object? it's web client who need this to send application info to server</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Client</span></span>&#123; register(params); deregister(params)&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletClient</span> <span class="keyword">implements</span> <span class="title">Client</span></span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">reactiveClient</span> <span class="keyword">implements</span> <span class="title">Client</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Application register is reponsible for this behavior. </span></span><br><span class="line"><span class="comment">// add behaviour to register to multiple admin server</span></span><br><span class="line"><span class="comment">// register times track</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationRegister</span></span>&#123;</span><br><span class="line">	ApplicationRegister(client, factory)&#123;&#125;</span><br><span class="line">	register(params)</span><br><span class="line">	deregister(params)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如何启动注册，何时去注册,注册失败怎么retry，间隔多久。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">registerlisenter</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> taskScheduler ts;</span><br><span class="line"><span class="comment">//do task register when application is ready.</span></span><br><span class="line"><span class="meta">@eventlisenter</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationReady</span><span class="params">(ApplicationReadyEvent event)</span> </span>&#123;</span><br><span class="line">	startRegisterTask();&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="server">server</h2>
+<p>然鹅， 我们知道如果服务有服务发现中心的，我们是可以问服务发现中心要到所有的服务地址的。比如eureka。所以client的lib的注册机制其实server自己去问eureka也能拿到。</p>
+<p>在来看看server吧：</p>
 <ol>
-<li>
-<p>语言<br>
-现在团队一般是怎么样的呢？特别是国际化以后。<br>
-多开发 -&gt; 少 ba &lt;- 多领域专家<br>
-显而易见时间精力的瓶颈在中间。为什么呢，因为手艺人不懂数学，只好带个翻译。那要去掉中间环节怎么办呢？ 这里就需要一门显示的语言（ubiquitous language）作为桥梁去融合两边的交流。有什么呢？ 依据描述，划出<strong>边界条件</strong>里的名词动作。并用这些划定好的物品为支点进行沟通。就好像一段小对话：<br>
-航空专家：设计一个系统跟踪，导航飞机的航线图，有出发点，降落点，飞行路线。<br>
-搬砖家： 好吧，这么说至少需要三样东西， 出发，降落，飞行路线。所以是 出发点-&gt;路线-&gt;降落点。那飞行高度呢？飞行路线怎么定义呢？<br>
-航空专家：飞机的飞行<strong>航行时</strong>高度都是固定的，飞行路线是很多小段的路线切割而成，每次飞机飞行一段距离就要确定是否偏离，就好像是checkpoint。使得飞机经过checkpoint得到最好的导航/信号/安全方面问题。<br>
-搬砖家：哦，明白了，所以出发点和降落点只是特殊类型的checkpoint。飞行路线由一组checkpoint组成。飞行高度在航行的边界下是constant。</p>
-</li>
-<li>
-<p>领域，子领域，边界<br>
-领域只在边界里才有明确的含义。就好像在航行的边界条件下飞行高度才有意义。 领域里可以拆成多子领域。看一张电子商务系统的图：<br>
-<img src="1.png" alt></p>
-</li>
-<li>
-<p>架构<br>
-分层结构。ui层 | application层 | domain领域层 | 基础设施层<br>
-ui层： 用户请求，界面展示。注意它不包含任何商业逻辑。这一层可能会有一些数据校验，但不属于领域。ui层是application层的直接使用者。<br>
-application层： 但是它是domain领域层的直接使用者&amp;&amp;<strong>协调者</strong>，他也没有任何商业逻辑。application层里面存在application service。他的工作可能会有一些安全控制，数据校验，或者事件发动，邮件发送。并且会很大一部分职责是组装数据给ui层。application层是非常轻便的一层，如果你的application层很复杂，需要注意是否你的商业逻辑泄漏到了这一层。<br>
-domain层：边界内的全部商业逻辑。domain service很大一部分职责是处理实现商业逻辑，并且发出命令通知下游使用正确对策处理。<br>
-基础设施层： 如ui层的组件封装， 系统核心core组件封装。基础框架。</p>
-</li>
-<li>
-<p>六边形<br>
-从界面展示到数据库存储，整个数据是流经我们的系统的。界面展示可能多变，可以多端，数据库可能会迁移存储，或者多数据中心，sql/no-sql多类型存储。我们的系统在中间是必经之路。<br>
-六边形就是service-oriented architect更好的说明与升级。<br>
-<img src="2.png" alt></p>
-</li>
+<li>web layer -&gt; header provider + controller + proxy -&gt; API</li>
+<li>shared kernel -&gt; util + serializer</li>
+<li>domain -&gt; aggregate with entity root + value object + events object</li>
+<li>conditional config -&gt; feature switch + bean init</li>
+<li>service -&gt;  info/status update + instance registry + event_listener</li>
+<li>eventstore -&gt; event storeage as repo</li>
+<li>notifier+alert feature</li>
 </ol>
-<p>但是面对外部交流复杂度越来越高，如果单一处理，势必会埋下性能隐患。 为了解决这个问题就有了cqrs 读写分离&amp;&amp; eventual consistency最终一致性&amp;&amp;事件驱动event driven architect孕育而生。</p>
-<ol start="5">
-<li>
-<p>entity &amp; value object &amp; 聚合<br>
-领域概念都可以是一个entity，这里并不是在说orm。 entity是一个有独立id的事物。这里也不是数据库表的一个对应，其实大多数数据库表都是应该都一个aggregate聚合物。 比如钱，在钱包的边界里，用户都有自己的钱包，钱包有自己的独立id，但是用户不关心追踪钱包里钞票的id是多少，只要钞票的面值，数量是一样的。换句话说，钞票是无id属性的，100块就是100块，哪一张100不重要。 immutable。每次我用到他的时候我不可能把100块撕成两半。如果我要用50，我只能是新建两张50块的钞票。摧毁100快的钞票。内部属性不能修改。他是value equality或者structure equality。entity是identity equality。 这里钞票就是一个value object。在使用的时候：favor value object to entity。 为什么？ 因为entity的生命周期长，任何改动都有历史可循。而value object无生命周期，要么新建要么摧毁。</p>
-</li>
-<li>
-<p>领域服务<br>
-责任分离。商业逻辑包裹。</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> authentic = <span class="keyword">false</span>;</span><br><span class="line">User user =</span><br><span class="line">    DomainRegistry</span><br><span class="line">        .userRepository()</span><br><span class="line">        .userWithUsername(aTenantId, aUsername);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (user != <span class="keyword">null</span>) &#123;</span><br><span class="line">    authentic = user.isAuthentic(aPassword);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> authentic;</span><br></pre></td></tr></table></figure>
-<p>有什么问题呢以上代码？tenant是一个子用户类型。而用户竟然要自己去authenticate。很明显这个责任应该在类似authentication service当中例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">user-descriptor=DomainRegistry</span><br><span class="line">        .authenticationService()</span><br><span class="line">        .authenticate(aTenantId, aUsername, aPassword);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AuthenticationService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDescriptor <span class="title">authenticate</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            TenantId aTenantId,</span></span></span><br><span class="line"><span class="function"><span class="params">            String aUsername,</span></span></span><br><span class="line"><span class="function"><span class="params">            String aPassword)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultEncryptionAuthenticationService</span></span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">AuthenticationService</span> </span>&#123;...&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDescriptor</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>
-<p>领域事件<br>
-任何领域的改变，逻辑都可以变成了显示的。可以有playback history如果把事件存储，可以加listeners as your bussiness expand，领域里上游逻辑和下游逻辑松耦合。<br>
-经常和领域专家交流会听到如此的词：当什么发生的时候，这个也要做，那个可以不做。。这就是很好的领域事件触发点。看个publish/subscribe的简单交互图<br>
-<img src="3.png" alt></p>
-</li>
-<li>
-<p>工厂 &amp; repository<br>
-别忘了用工厂生成非persistent对象，用repo生成storage backup对象。别离了Spring活不了了。</p>
-</li>
-<li>
-<p>设计模式。<br>
-设计模式三大类，是creation还是structure还是behavior。</p>
-</li>
-<li>
-<p>交界集成<br>
-rpc/rest/message 分布式系统的交互。正如六边形一样，如何做好责任分离，多client兼容。<br>
-<img src="4.png" alt></p>
-</li>
-</ol>
-<p>未完待续。。。</p>
+<p>所以重点是service 里面的update 以及event listener里面的功能实现。这个稍后再详细说明。<br>
+首先admin正常启动，需要@enableadminserver注解。这个注解和@Springboot注解的功能是一样的。不过有些许不同的是，@admin会import markerconfig 并实例化一个marker object。 所有的其他的condition config都会基于这个marker object是否存在。相当于一个总开关。下面可能会有一些可配置的子开关在property file里设置。</p>
+<p>在从domain layer试想一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//all info is aggregated as an object: instance with all value objects inside of it</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">instance</span></span>&#123;</span><br><span class="line">	instanceid id; <span class="comment">//aggregate id</span></span><br><span class="line">	info info; <span class="comment">// meta info</span></span><br><span class="line">	endpoints ep; <span class="comment">// endpoints urls</span></span><br><span class="line">	registration rg; <span class="comment">//rg info</span></span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//not created by factory but it's from repository cause it's persisted in somewhere</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">instancerepository</span></span>&#123; CRUD etc. &#125;</span><br><span class="line"><span class="comment">//event source pattern in DDD</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventsourcingInstanceRepository</span></span>&#123;</span><br><span class="line"><span class="meta">@inject</span> eventstore es;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span><span class="meta">@implement</span> CRUD etc.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">//all event data is stored in eventstore</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">...  value objects definition</span><br><span class="line"></span><br><span class="line"><span class="comment">// all kinds of events</span></span><br><span class="line"><span class="keyword">abstract</span> instancevent&#123;&#125;</span><br><span class="line">InstanceRegisteredEvent extends instancevent&#123;&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>未完待续 on。。。</p>
+<ul>
+<li>event store pattern</li>
+<li>reactive programming</li>
+<li>service</li>
+<li>UI</li>
+</ul>
 
                 
 
@@ -331,13 +285,9 @@ rpc/rest/message 分布式系统的交互。正如六边形一样，如何做好
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/yulblog/article/Java11功能简介/" data-toggle="tooltip" data-placement="top" title="Java11功能简介">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/yulblog/article/Full-Eclipse-Gears/" data-toggle="tooltip" data-placement="top" title="Eclipse合金装备">Next Post &rarr;</a>
+                            <a href="/yulblog/article/升级/" data-toggle="tooltip" data-placement="top" title="升级">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -363,7 +313,7 @@ rpc/rest/message 分布式系统的交互。正如六边形一样，如何做好
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#领域驱动设计一"><span class="toc-nav-text">领域驱动设计（一）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#why领域"><span class="toc-nav-text">why领域</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#how优雅"><span class="toc-nav-text">how优雅</span></a></li></ol></li></ol>     
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#从平房开始看-spring-boot-admin一"><span class="toc-nav-text">从平房开始看 - Spring boot admin(一)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#client"><span class="toc-nav-text">client</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#server"><span class="toc-nav-text">server</span></a></li></ol></li></ol>     
         
         </div>
       </aside>
@@ -383,8 +333,6 @@ rpc/rest/message 分布式系统的交互。正如六边形一样，如何做好
                     <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/yulblog/tags/#DDD" title="DDD">DDD</a>
-                        
                     </div>
                 </section>
                 
