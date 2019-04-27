@@ -86,12 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/yulblog/tags/#spring" title="spring">spring</a>
+                            
                         </div>
                         <h1>看建筑画图纸-三</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Yul on
-                            2019-04-14
+                            2019-04-15
                         </span>
                     </div>
                 
@@ -238,6 +240,10 @@
 <li>HttpHeaderFilter</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpHeaderFilter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] HOP_BY_HOP_HEADERS = <span class="keyword">new</span> String[]&#123;<span class="string">"Host"</span>, <span class="string">"Connection"</span>, <span class="string">"Keep-Alive"</span>, <span class="string">"Proxy-Authenticate"</span>, <span class="string">"Proxy-Authorization"</span>, <span class="string">"TE"</span>, <span class="string">"Trailer"</span>, <span class="string">"Transfer-Encoding"</span>, <span class="string">"Upgrade"</span>, <span class="string">"X-Application-Context"</span>&#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; ignoredHeaders; <span class="comment">//BP: keep all reference final to prevent 3-rd party reference modify</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpHeaders <span class="title">filterHeaders</span><span class="params">(HttpHeaders headers)</span> </span>&#123;</span><br><span class="line">        HttpHeaders filtered = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">        filtered.putAll(headers.entrySet()</span><br><span class="line">                               .stream()</span><br><span class="line">                               .filter(e -&gt; <span class="keyword">this</span>.includeHeader(e.getKey()))<span class="comment">//BP: try to use filter instead of foreach to prevent side affect. foreach will always cause side affects.</span></span><br><span class="line">                               .collect(toMap(Map.Entry::getKey, Map.Entry::getValue))); <span class="comment">//BP: static import Collectors to read better</span></span><br><span class="line">        <span class="keyword">return</span> filtered;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li></li>
+</ol>
+
                 
 
                 <hr>
@@ -296,6 +302,8 @@
                     <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/yulblog/tags/#spring" title="spring">spring</a>
+                        
                     </div>
                 </section>
                 
