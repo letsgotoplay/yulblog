@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Ground | 下地
+          看建筑画图纸-三 - Ground | 下地
         
     </title>
 
-    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/tags/DDD/">
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/看建筑画图纸-三/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/yulblog/undefined')
-            /*page*/
+            background-image: url('./../../img/default-bg.jpg')
+            /*post*/
         
     }
     
@@ -83,10 +83,16 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>Ground</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">Personal Blog</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>看建筑画图纸-三</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yul on
+                            2019-04-14
+                        </span>
                     </div>
                 
 
@@ -213,289 +219,145 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
-            
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
+                <p>看完建筑的基本架构，咱们在细看看用料规范呗：</p>
+<h1 id="best-practices-found">best practices found</h1>
+<ol>
+<li>HttpHeaderFilter</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpHeaderFilter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] HOP_BY_HOP_HEADERS = <span class="keyword">new</span> String[]&#123;<span class="string">"Host"</span>, <span class="string">"Connection"</span>, <span class="string">"Keep-Alive"</span>, <span class="string">"Proxy-Authenticate"</span>, <span class="string">"Proxy-Authorization"</span>, <span class="string">"TE"</span>, <span class="string">"Trailer"</span>, <span class="string">"Transfer-Encoding"</span>, <span class="string">"Upgrade"</span>, <span class="string">"X-Application-Context"</span>&#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; ignoredHeaders; <span class="comment">//BP: keep all reference final to prevent 3-rd party reference modify</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpHeaders <span class="title">filterHeaders</span><span class="params">(HttpHeaders headers)</span> </span>&#123;</span><br><span class="line">        HttpHeaders filtered = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">        filtered.putAll(headers.entrySet()</span><br><span class="line">                               .stream()</span><br><span class="line">                               .filter(e -&gt; <span class="keyword">this</span>.includeHeader(e.getKey()))<span class="comment">//BP: try to use filter instead of foreach to prevent side affect. foreach will always cause side affects.</span></span><br><span class="line">                               .collect(toMap(Map.Entry::getKey, Map.Entry::getValue))); <span class="comment">//BP: static import Collectors to read better</span></span><br><span class="line">        <span class="keyword">return</span> filtered;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+                
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2019">
-                    <span class="tag-text">2019</span>
-                </span>
-                <ul>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    04-27
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/yulblog/article/看建筑画图纸-二/" style="color: #0085a1">
-                        <span>
-                            看建筑画图纸-二
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    04-14
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/yulblog/article/看建筑画图纸-三/" style="color: #0085a1">
-                        <span>
-                            看建筑画图纸-三
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    04-14
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/yulblog/article/看建筑画图纸/" style="color: #0085a1">
-                        <span>
-                            看建筑画图纸
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    04-07
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/yulblog/article/升级/" style="color: #0085a1">
-                        <span>
-                            升级
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    03-29
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/yulblog/article/Java11功能简介/" style="color: #0085a1">
-                        <span>
-                            Java11功能简介
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    03-29
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/yulblog/article/领域驱动设计/" style="color: #0085a1">
-                        <span>
-                            领域驱动设计（一）
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    03-18
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/yulblog/article/Full-Eclipse-Gears/" style="color: #0085a1">
-                        <span>
-                            Eclipse合金装备
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/yulblog/article/看建筑画图纸-二/" data-toggle="tooltip" data-placement="top" title="看建筑画图纸-二">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/yulblog/article/看建筑画图纸/" data-toggle="tooltip" data-placement="top" title="看建筑画图纸">Next Post &rarr;</a>
+                        </li>
+                    
                 </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
             </div>
             
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#best-practices-found"><span class="toc-nav-text">best practices found</span></a></li></ol>     
+        
+        </div>
+      </aside>
+    
 
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://frienda.org" target="_blank">Dummy Friend A</a></li>
+                    
+                        <li><a href="#" target="_blank">Dummy Friends C</a></li>
+                    
+                </ul>
+                
+            </div>
         </div>
     </div>
-</div>
+</article>
 
-                <!-- 如果开启评论功能 -->
-                
-            </div>
 
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
 
-<section>
-    <!-- no hr -->
-    <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-        
-            
-        
-    </div>
-</section>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/yulblog/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id="avatar_pic" src="/yulblog/img/ironman-draw.png">
-        
 
-        
-            <p>Hi, i&#39;m Yul</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
-                <li>
-                    <a target="_blank" href="https://www.zhihu.com/people/Dummy">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                        </span>
-                    </a>
-                </li>
-            
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: '^'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-            
-
-            
-
-            
-                <li>
-                    <a target="_blank" href="https://github.com/Dummy">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/yulblog/article/看建筑画图纸-二/">看建筑画图纸-二</a>
-        </li>
-      
-        <li>
-          <a href="/yulblog/article/看建筑画图纸-三/">看建筑画图纸-三</a>
-        </li>
-      
-        <li>
-          <a href="/yulblog/article/看建筑画图纸/">看建筑画图纸</a>
-        </li>
-      
-        <li>
-          <a href="/yulblog/article/升级/">升级</a>
-        </li>
-      
-        <li>
-          <a href="/yulblog/article/Java11功能简介/">Java11功能简介</a>
-        </li>
-      
-    </ul>
-  </div>
-</h5>
-        <hr>
-    
-        <!-- Friends Blog -->
-
-<h5>FRIENDS</h5>
-<ul class="list-inline">
-
-    
-        <li><a href="http://frienda.org" target="_blank">Dummy Friend A</a></li>
-    
-        <li><a href="#" target="_blank">Dummy Friends C</a></li>
-    
-</ul>
-
-        <hr>
-    
-        
-    <h5>ARCHIVES</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/yulblog/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/yulblog/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li></ul>
-    </div>
-
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
