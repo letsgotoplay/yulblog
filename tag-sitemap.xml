@@ -17,8 +17,22 @@
     </url>
 
     <url>
+        <loc>https://letsgotoplay.github.io/yulblog/tags/Principle/</loc>
+        <lastmod>2019-05-04T03:28:42.847Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://letsgotoplay.github.io/yulblog/tags/spring/</loc>
-        <lastmod>2019-04-28T10:09:52.979Z</lastmod>
+        <lastmod>2019-05-04T03:30:28.855Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://letsgotoplay.github.io/yulblog/tags/SQL/</loc>
+        <lastmod>2019-05-04T05:31:16.694Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

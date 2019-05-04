@@ -8,8 +8,24 @@
     </url>
 
     <url>
+        <loc>https://letsgotoplay.github.io/yulblog/article/anti-pattern-sql/</loc>
+        <lastmod>2019-05-04T05:31:16.694Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://letsgotoplay.github.io/yulblog/article/%E7%9C%8B%E5%BB%BA%E7%AD%91%E7%94%BB%E5%9B%BE%E7%BA%B8-%E4%B8%89/</loc>
-        <lastmod>2019-04-28T10:09:52.979Z</lastmod>
+        <lastmod>2019-05-04T03:30:28.855Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://letsgotoplay.github.io/yulblog/article/Principles/</loc>
+        <lastmod>2019-05-04T03:28:42.847Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

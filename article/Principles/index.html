@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          升级 - Ground | 下地
+          Principles - Ground | 下地
         
     </title>
 
-    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/升级/">
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/Principles/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
@@ -86,12 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/yulblog/tags/#Principle" title="Principle">Principle</a>
+                            
                         </div>
-                        <h1>升级</h1>
+                        <h1>Principles</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Yul on
-                            2019-04-07
+                            2019-05-04
                         </span>
                     </div>
                 
@@ -232,75 +234,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="adapting-从monolithic到microservice升级">Adapting: 从monolithic到microservice升级</h1>
+                <h1 id="principles原则">Principles/原则</h1>
 <blockquote>
-<p>技术一旦出现将不再回头。新技术，新需求永远都在变化，adapting是不变的关键词。</p>
+<p>sometimes, it just feels amazing to see how simple and deeps meaning inside these few chinese charactors.</p>
 </blockquote>
-<hr>
-<h2 id="计划">计划</h2>
-<p>对于大型企业的诸多项目啦来说，从一体式结构拆成微服务似乎变成了一项必备项。如何稳定平滑的做技术升级，处理好新技术升级带来的复杂度挑战，并最终让各级用户感知到升级带来的畅快感。好比我们从木板床变成席梦思，用户更舒适了。当然，升级也有很多个维度，从总体的全公司技术方向，部门的基础平台，调度，管理在到团队的具体项目升级。 这里只有一些做升级的过程中对于一个具体的小项目纬度的拆分的记录。作为储备。</p>
-<p>首先，legacy monolithic application是很不好拆分的。从分层的概念上来说，application layer code， domain logic， data layer 全都是在一起的，其中商业逻辑，最重的部分，有着很多千丝万缕的依赖。看上去无法拆分。可是俗话说实践是检验真理的唯一标准。老项目是实实在在的在线上工作的，经过了在线检验。想要把他完全重写成现代化规范，步子太大，风险太高，成本太多。</p>
-<p>从最本能的生活想法出发：<br>
-就好像是好拆汽车，当看见乱七八糟的复杂零件的时候，心里自然而然会有一个规划：</p>
-<ol>
-<li>
-<p>有大概哪几个大块。因为汽车零件我们可以肉眼看到，大脑自动就处理了。</p>
-</li>
-<li>
-<p>先从最简单的，小的，可以动手的地方开始拆。把小部件拆出来以后给大部件留出挪移的空间。</p>
-</li>
-<li>
-<p>拆除来的部件还的是能单独运行的，不能拆坏了。</p>
-</li>
-<li>
-<p>各个部件之间以后就靠电线来合作交流。</p>
-</li>
-<li>
-<p>有些是在一体化的零件拆不了的，只能用他们，可是螺丝位置又不完全匹配，只能是用一些桥接手段来放置。</p>
-</li>
-<li>
-<p>想着点以后的新车模，这些引擎，零部件还得往那边挪。</p>
-</li>
-</ol>
-<p>照着这个模版。在聊聊项目的问题：</p>
-<p>1.老项目需要做ui升级。老ui也要接着用。</p>
-<p>2.ui升级一定意味着数据展示会有变化，用户操作会有变化。</p>
-<p>3.而且不仅仅是ui升级，还需要集成新的第三方系统，并在ui上合理展示。</p>
-<h2 id="步骤">步骤</h2>
-<p>首先做了两个简单的处理步骤：</p>
-<p>前端在做升级的过程中，发现老的api极度不友好，不规范 -&gt; 接口全部重新标准化定义，做api版本隔离v1，v2。老的接口老版本继续用，新的接口收到请求后转发到老接口。最小化后端改动。不影响老项目。 -&gt; proxy layer</p>
-<p>前台要求简化，增加，全新，数据。 -&gt; 新接口里接受到的数据预处理，得到老数据后的post处理 -&gt; anti-corruption action in proxy layer</p>
-<p>有了这两步，至少前端可以联调开发，不会block前端的进度。</p>
-<p>可是这个proxy是没有任何商业逻辑的。proxy只能止渴。所以老项目的分拆还是避免不了，因为还要集成第三方系统。想象一下如果不分拆：新的逻辑无处落脚。写到一团乱麻的老项目里只会增加未来分拆的难度。安全落地新的集成也需要同样的复杂依赖分析。</p>
-<p>看了些网上的大致经验，也正好匹配前面拆汽车零部件的步骤：</p>
-<ol>
-<li>先refactor，划分出清楚的商业逻辑关系。</li>
-<li>先拆出一个明显的简单的部分。比如用户，权限，monitor等</li>
-<li>老代码能不动就不要动，但是可以新增一些胶水代码在旧/新的服务上。做anti-corruption layer。</li>
-<li>数据库千万不要去做规范化整理。代价太大。</li>
-<li>不宜拆的模块划分，并做好优先级排序。</li>
-<li>新的集成一定要去新的service里面。不要放在老项目里了。因为以后要转到microservice。</li>
-<li>orm要注意，看看id生成会不会有冲突在云环境里。</li>
-<li>最好是每个service有自己的存储。</li>
-</ol>
-<p>开始分析项目：</p>
 <ul>
-<li>各个layer之间有清晰的职责划分。application层只做与client的交互问题，domain层做商业逻辑，data layer只做数据。</li>
-<li>可以从application/db table 双向出发，找到简单清晰的关系清楚的。因为商业逻辑不管多复杂，最初都始于易用的ui，终于都落表。</li>
-<li>通过static code analysis工具也可以发现边界清楚的模块。</li>
-<li>画出aggregates/entity/value-object 树组成。root必须是一个entity。在包含多个value-objects或多个aggregates。保持外界只有root的reference。root与内部对话。value copy to outside instead of pass inner object reference to outside.</li>
-<li>通过factory 新建arrgregates/entity, 通过repo获取/存储已经存在的（db）</li>
-<li>制定出event/event handler</li>
-<li>分析所属的specification/strategy</li>
+<li>闲笔易录，深情难赋，观者有缘，见字如晤。</li>
+<li>敬胜怠，义胜欲；知其雄，守其雌。</li>
+<li>勤于邦，俭于家，言忠信，行笃敬。</li>
+<li>知行合一</li>
 </ul>
-<p>reference:</p>
-<ol>
-<li><a href="https://cloud.google.com/appengine/docs/standard/go/microservice-migration" target="_blank" rel="noopener">https://cloud.google.com/appengine/docs/standard/go/microservice-migration</a></li>
-<li><a href="https://thenewstack.io/modernize-legacy-applications-keep-update-re-write-needs-re-written/" target="_blank" rel="noopener">https://thenewstack.io/modernize-legacy-applications-keep-update-re-write-needs-re-written/</a></li>
-<li><a href="https://martinfowler.com/articles/break-monolith-into-microservices.html" target="_blank" rel="noopener">https://martinfowler.com/articles/break-monolith-into-microservices.html</a></li>
-<li><a href="https://www.nginx.com/blog/refactoring-a-monolith-into-microservices/" target="_blank" rel="noopener">https://www.nginx.com/blog/refactoring-a-monolith-into-microservices/</a></li>
-<li><a href="https://dzone.com/articles/choosing-a-legacy-software-modernization-strategy" target="_blank" rel="noopener">https://dzone.com/articles/choosing-a-legacy-software-modernization-strategy</a></li>
-</ol>
+<blockquote></blockquote>
 
                 
 
@@ -309,12 +253,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/yulblog/article/看建筑画图纸/" data-toggle="tooltip" data-placement="top" title="看建筑画图纸">&larr; Previous Post</a>
+                            <a href="/yulblog/article/anti-pattern-sql/" data-toggle="tooltip" data-placement="top" title="Anti Pattern SQL">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/yulblog/article/Java11功能简介/" data-toggle="tooltip" data-placement="top" title="Java11功能简介">Next Post &rarr;</a>
+                            <a href="/yulblog/article/看建筑画图纸-三/" data-toggle="tooltip" data-placement="top" title="看建筑画图纸-三">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -340,7 +284,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#adapting-从monolithic到microservice升级"><span class="toc-nav-text">Adapting: 从monolithic到microservice升级</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#计划"><span class="toc-nav-text">计划</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤"><span class="toc-nav-text">步骤</span></a></li></ol></li></ol>     
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#principles原则"><span class="toc-nav-text">Principles/原则</span></a></li></ol>     
         
         </div>
       </aside>
@@ -360,6 +304,8 @@
                     <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/yulblog/tags/#Principle" title="Principle">Principle</a>
+                        
                     </div>
                 </section>
                 
