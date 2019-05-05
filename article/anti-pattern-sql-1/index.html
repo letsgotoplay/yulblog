@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Principles - Ground | 下地
+          Anti Pattern SQL - Ground | 下地
         
     </title>
 
-    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/Principles/">
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/anti-pattern-sql-1/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
@@ -86,14 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/yulblog/tags/#Principle" title="Principle">Principle</a>
+                              <a class="tag" href="/yulblog/tags/#SQL" title="SQL">SQL</a>
                             
                         </div>
-                        <h1>Principles</h1>
-                        <h2 class="subheading"></h2>
+                        <h1>Anti Pattern SQL</h1>
+                        <h2 class="subheading">Part II</h2>
                         <span class="meta">
                             Posted by Yul on
-                            2019-05-04
+                            2019-05-05
                         </span>
                     </div>
                 
@@ -234,17 +234,246 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="principles原则">Principles/原则</h1>
-<blockquote>
-<p>sometimes, it just feels amazing to see how simple and deeps meaning inside these few chinese charactors.</p>
-</blockquote>
+                <h1 id="anti-pattern-at-physcial-level">Anti Pattern At Physcial Level</h1>
+<h2 id="numerical-precision">Numerical Precision</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target</td>
+<td>save high precision numbers</td>
+</tr>
+<tr>
+<td>Anti-Pattern</td>
+<td>use “Float”</td>
+</tr>
+<tr>
+<td>Normal-Pattern</td>
+<td>use ‘Numeric’/ ‘Decimal’</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enum">ENUM</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target</td>
+<td>Save a ENUM type</td>
+</tr>
+<tr>
+<td>Anti-Pattern</td>
+<td>Define a Enum type in MYSQL or set condition like column in (‘a’,‘b’,‘c’)</td>
+</tr>
+<tr>
+<td>Normal-Pattern</td>
+<td>use extra static table to get extensibility.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:<br>
+define status in (‘new’,‘in-progress’,‘finished’), however in new requirement comes and we have to alter table to add a new type like 'duplicated 'in this status column.</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>new</td>
+</tr>
+<tr>
+<td>2</td>
+<td>in-progress</td>
+</tr>
+<tr>
+<td>3</td>
+<td>finished</td>
+</tr>
+</tbody>
+</table>
+<p>-&gt;</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>status_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>status_id</th>
+<th>status_name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>new</td>
+</tr>
+<tr>
+<td>2</td>
+<td>in-progress</td>
+</tr>
+<tr>
+<td>3</td>
+<td>finished</td>
+</tr>
+<tr>
+<td>4</td>
+<td>duplicated</td>
+</tr>
+</tbody>
+</table>
+<h2 id="phantom-files">Phantom Files</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target</td>
+<td>integrate file system to store files and store relationships within DB.</td>
+</tr>
+<tr>
+<td>Anti-Pattern</td>
+<td>Bad disaster recovery, unforced transaction, unforced backup.</td>
+</tr>
+<tr>
+<td>Notice</td>
+<td>when disaster happens, cant reply on DB backup only, cause the file is seperately stored in file system.</td>
+</tr>
+<tr>
+<td>Normal-Pattern</td>
+<td>try to use ‘BLOB’ in extra table.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="too-many-index">Too Many Index</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target</td>
+<td>To optimize the performance, Build Index without reasoning and Analysis, Planning as well as maintainess.</td>
+</tr>
+<tr>
+<td>Anti-Pattern</td>
+<td>build too many indexes</td>
+</tr>
+<tr>
+<td>Notice</td>
+<td>check the selectivity. COUNT(DISTINCT status) /COUNT(status). if the rate is high, then the index effectiveness is low. it’s like tons of duplicates in dictionary, we have to check these duplicates one by one, then the index’s function is lost.</td>
+</tr>
+<tr>
+<td>Normal-Pattern</td>
+<td>tools to MENTOR(Mesure,Explain,Nominate,Test,Optimize,Rebuild)</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>闲笔易录，深情难赋，观者有缘，见字如晤。</li>
-<li>敬胜怠，义胜欲；知其雄，守其雌。</li>
-<li>勤于邦，俭于家，言忠信，行笃敬。</li>
-<li>知行合一</li>
+<li>Mesure -&gt; Slow query log.</li>
+<li>Explain -&gt; Why it’s slow and where did time spend.</li>
+<li>Nominate -&gt; find out queries without index, find out coverage rate of queries with index</li>
+<li>Test -&gt; After build index, test the performance increase.</li>
+<li>Optimize -&gt; Cache.</li>
+<li>Rebuild -&gt; Balance the index tree.</li>
 </ul>
-<blockquote></blockquote>
+<h1 id="anti-pattern-on-query">Anti Pattern On Query</h1>
+<h2 id="null-value">NULL Value</h2>
+<p>NULL can not be treated as normal value.</p>
+<p>NULL=NULL  unknown<br>
+NULL+10 unknow<br>
+Column_name = null unkown.</p>
+<p>Try to use is NULL. or forbiden NULL at column condition.</p>
+<h2 id="groups">Groups</h2>
+<p>Group by can only be used on single value rule.</p>
+<p>Query:<br>
+select product_id, max(date_reported) from product group by product_id; -&gt; valid<br>
+select product_id, max(date_reported), bug_id from product join bugproducts using bug_id group by product_id; -&gt; invalid<br>
+break the single value rule, cause DB cant ensure the bug_id is single value.</p>
+<p>Solution:</p>
+<ol>
+<li>get rid of uncertain column</li>
+<li>use sub select</li>
+<li>use temp table</li>
+<li>use join</li>
+</ol>
+<h2 id="random">Random</h2>
+<p>Order by random and select first column. -&gt; easy to understand but it’s slow, and waster of work.</p>
+<p>Solution:</p>
+<ol>
+<li>direct find a random key from begin to end if key is continuous.</li>
+<li>find next max value when key is not continous used.</li>
+<li>read all keys into program and random select one.</li>
+<li>use curse to random jump to one row.</li>
+<li>use ‘sample’ clause.</li>
+</ol>
+<h2 id="full-text-search">Full Text Search</h2>
+<p>Use Lucene, even though some DB support some kind of similar search</p>
+<h2 id="select-chain">Select Chain</h2>
+<p>Sometimes, Developer always try to solve the requirement in one query, like:<br>
+“SELECT COUNT(bp.product_id) AS how_many_products,<br>
+COUNT(dev.account_id) AS how_many_developers,<br>
+COUNT(b.bug_id)/COUNT(dev.account_id) AS avg_bugs_per_developer,<br>
+COUNT(cust.account_id) AS how_many_customers<br>
+FROM Bugs b JOIN BugsProducts bp ON (b.bug_id = bp.bug_id)<br>
+JOIN Accounts dev ON (b.assigned_to = dev.account_id)<br>
+JOIN Accounts cust ON (b.reported_by = cust.account_id)<br>
+WHERE cust.email NOT LIKE '%@example.com’<br>
+GROUP BY bp.product_id;”</p>
+<p>But, it’s hard to understand and maintain. try to seperate and go step by step will be better.</p>
+<h2 id="useage-of">Useage of “*”</h2>
+<p>It’s not worth to use “*”, it’s ambiguous.</p>
+<h2 id="others">Others</h2>
+<ol>
+<li>hash password for storage.</li>
+<li>avoid SQL inject by using template.</li>
+<li>SQL as first class citizen.</li>
+<li>SQL also needs documentation.</li>
+<li>Domain Drive Design to be more adaptive, refected in SQL.</li>
+</ol>
 
                 
 
@@ -252,13 +481,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/yulblog/article/anti-pattern-sql/" data-toggle="tooltip" data-placement="top" title="Anti Pattern SQL">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/yulblog/article/看建筑画图纸-三/" data-toggle="tooltip" data-placement="top" title="看建筑画图纸-三">Next Post &rarr;</a>
+                            <a href="/yulblog/article/anti-pattern-sql/" data-toggle="tooltip" data-placement="top" title="Anti Pattern SQL">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -284,7 +509,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#principles原则"><span class="toc-nav-text">Principles/原则</span></a></li></ol>     
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#anti-pattern-at-physcial-level"><span class="toc-nav-text">Anti Pattern At Physcial Level</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#numerical-precision"><span class="toc-nav-text">Numerical Precision</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#enum"><span class="toc-nav-text">ENUM</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#phantom-files"><span class="toc-nav-text">Phantom Files</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#too-many-index"><span class="toc-nav-text">Too Many Index</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#anti-pattern-on-query"><span class="toc-nav-text">Anti Pattern On Query</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null-value"><span class="toc-nav-text">NULL Value</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#groups"><span class="toc-nav-text">Groups</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#random"><span class="toc-nav-text">Random</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#full-text-search"><span class="toc-nav-text">Full Text Search</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#select-chain"><span class="toc-nav-text">Select Chain</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#useage-of"><span class="toc-nav-text">Useage of “*”</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#others"><span class="toc-nav-text">Others</span></a></li></ol></li></ol>     
         
         </div>
       </aside>
@@ -304,7 +529,7 @@
                     <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/yulblog/tags/#Principle" title="Principle">Principle</a>
+                          <a class="tag" href="/yulblog/tags/#SQL" title="SQL">SQL</a>
                         
                     </div>
                 </section>
