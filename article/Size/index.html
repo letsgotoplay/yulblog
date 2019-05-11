@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Anti Pattern SQL - Ground | 下地
+          Pool Size - Ground | 下地
         
     </title>
 
-    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/anti-pattern-sql-1/">
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/Size/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
@@ -86,14 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/yulblog/tags/#SQL" title="SQL">SQL</a>
+                              <a class="tag" href="/yulblog/tags/#Thread" title="Thread">Thread</a>
                             
                         </div>
-                        <h1>Anti Pattern SQL</h1>
-                        <h2 class="subheading">Part II</h2>
+                        <h1>Pool Size</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Yul on
-                            2019-05-05
+                            2019-05-11
                         </span>
                     </div>
                 
@@ -234,246 +234,34 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="anti-pattern-at-physcial-level">Anti Pattern At Physcial Level</h1>
-<h2 id="numerical-precision">Numerical Precision</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Target</td>
-<td>save high precision numbers</td>
-</tr>
-<tr>
-<td>Anti-Pattern</td>
-<td>use “Float”</td>
-</tr>
-<tr>
-<td>Normal-Pattern</td>
-<td>use ‘Numeric’/ ‘Decimal’</td>
-</tr>
-</tbody>
-</table>
-<h2 id="enum">ENUM</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Target</td>
-<td>Save a ENUM type</td>
-</tr>
-<tr>
-<td>Anti-Pattern</td>
-<td>Define a Enum type in MYSQL or set condition like column in (‘a’,‘b’,‘c’)</td>
-</tr>
-<tr>
-<td>Normal-Pattern</td>
-<td>use extra static table to get extensibility.</td>
-</tr>
-</tbody>
-</table>
-<p>Example:<br>
-define status in (‘new’,‘in-progress’,‘finished’), however in new requirement comes and we have to alter table to add a new type like 'duplicated 'in this status column.</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>new</td>
-</tr>
-<tr>
-<td>2</td>
-<td>in-progress</td>
-</tr>
-<tr>
-<td>3</td>
-<td>finished</td>
-</tr>
-</tbody>
-</table>
-<p>-&gt;</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>status_id</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>3</td>
-</tr>
-<tr>
-<td>4</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>status_id</th>
-<th>status_name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>new</td>
-</tr>
-<tr>
-<td>2</td>
-<td>in-progress</td>
-</tr>
-<tr>
-<td>3</td>
-<td>finished</td>
-</tr>
-<tr>
-<td>4</td>
-<td>duplicated</td>
-</tr>
-</tbody>
-</table>
-<h2 id="phantom-files">Phantom Files</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Target</td>
-<td>integrate file system to store files and store relationships within DB.</td>
-</tr>
-<tr>
-<td>Anti-Pattern</td>
-<td>Bad disaster recovery, unforced transaction, unforced backup.</td>
-</tr>
-<tr>
-<td>Notice</td>
-<td>when disaster happens, cant reply on DB backup only, cause the file is seperately stored in file system.</td>
-</tr>
-<tr>
-<td>Normal-Pattern</td>
-<td>try to use ‘BLOB’ in extra table.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="too-many-index">Too Many Index</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Target</td>
-<td>To optimize the performance, Build Index without reasoning and Analysis, Planning as well as maintainess.</td>
-</tr>
-<tr>
-<td>Anti-Pattern</td>
-<td>build too many indexes</td>
-</tr>
-<tr>
-<td>Notice</td>
-<td>check the selectivity. COUNT(DISTINCT status) /COUNT(status). if the rate is high, then the index effectiveness is low. it’s like tons of duplicates in dictionary, we have to check these duplicates one by one, then the index’s function is lost.</td>
-</tr>
-<tr>
-<td>Normal-Pattern</td>
-<td>tools to MENTOR(Mesure,Explain,Nominate,Test,Optimize,Rebuild)</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Mesure -&gt; Slow query log.</li>
-<li>Explain -&gt; Why it’s slow and where did time spend.</li>
-<li>Nominate -&gt; find out queries without index, find out coverage rate of queries with index</li>
-<li>Test -&gt; After build index, test the performance increase.</li>
-<li>Optimize -&gt; Cache.</li>
-<li>Rebuild -&gt; Balance the index tree.</li>
-</ul>
-<h1 id="anti-pattern-on-query">Anti Pattern On Query</h1>
-<h2 id="null-value">NULL Value</h2>
-<p>NULL can not be treated as normal value.</p>
-<p>NULL=NULL  unknown<br>
-NULL+10 unknow<br>
-Column_name = null unkown.</p>
-<p>Try to use is NULL. or forbiden NULL at column condition.</p>
-<h2 id="groups">Groups</h2>
-<p>Group by can only be used on single value rule.</p>
-<p>Query:<br>
-select product_id, max(date_reported) from product group by product_id; -&gt; valid<br>
-select product_id, max(date_reported), bug_id from product join bugproducts using bug_id group by product_id; -&gt; invalid<br>
-break the single value rule, cause DB cant ensure the bug_id is single value.</p>
-<p>Solution:</p>
-<ol>
-<li>get rid of uncertain column</li>
-<li>use sub select</li>
-<li>use temp table</li>
-<li>use join</li>
-</ol>
-<h2 id="random">Random</h2>
-<p>Order by random and select first column. -&gt; easy to understand but it’s slow, and waster of work.</p>
-<p>Solution:</p>
-<ol>
-<li>direct find a random key from begin to end if key is continuous.</li>
-<li>find next max value when key is not continous used.</li>
-<li>read all keys into program and random select one.</li>
-<li>use curse to random jump to one row.</li>
-<li>use ‘sample’ clause.</li>
-</ol>
-<h2 id="full-text-search">Full Text Search</h2>
-<p>Use Lucene, even though some DB support some kind of similar search</p>
-<h2 id="select-chain">Select Chain</h2>
-<p>Sometimes, Developer always try to solve the requirement in one query, like:<br>
-“SELECT COUNT(bp.product_id) AS how_many_products,<br>
-COUNT(dev.account_id) AS how_many_developers,<br>
-COUNT(b.bug_id)/COUNT(dev.account_id) AS avg_bugs_per_developer,<br>
-COUNT(cust.account_id) AS how_many_customers<br>
-FROM Bugs b JOIN BugsProducts bp ON (b.bug_id = bp.bug_id)<br>
-JOIN Accounts dev ON (b.assigned_to = dev.account_id)<br>
-JOIN Accounts cust ON (b.reported_by = cust.account_id)<br>
-WHERE cust.email NOT LIKE '%@example.com’<br>
-GROUP BY bp.product_id;”</p>
-<p>But, it’s hard to understand and maintain. try to seperate and go step by step will be better.</p>
-<h2 id="useage-of">Useage of “*”</h2>
-<p>It’s not worth to use “*”, it’s ambiguous.</p>
-<h2 id="others">Others</h2>
-<ol>
-<li>hash password for storage.</li>
-<li>avoid SQL inject by using template.</li>
-<li>SQL as first class citizen.</li>
-<li>SQL also needs documentation.</li>
-<li>Domain Drive Design to be more adaptive, refected in SQL.</li>
-</ol>
+                <h1 id="怎么确定一个pool的大小上限">怎么确定一个pool的大小上限？</h1>
+<p>pool的大小上限很重要，因为他可以让你尽可能的提高系统利用率。在了解你的系统的能力，应对系统峰值或者系统自身的瓶颈有一些线索。说实话，在没有任何测量与测试的情况下，怎么找到一个池的大小是有点盲人摸象，也不会找到系统的最优点。但是却有一套比较实用的理论去帮助我们找到一个起始点。</p>
+<p>在java里面有一些封装好的thread pool。 看一下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Thread Pool constructor */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">              <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">              <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">              TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">              BlockingQueue&lt;Runnable&gt; workQueue)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Cached Thread Pool */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                                      <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                                                      <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意到SynchronousQueue<runnable>，每一个thread都会在这里面排队。当工人不够时候，会增加一个新的工人到这里面排队。这里就会出现两种情况 -&gt;<br>
+	1. 活太多，一直在增加工人，厂子爆了。out of memeroy。<br>
+	2. 活太少， 工人没少，全部的人都在等活， thread starvation。<br>
+为避免这种情况的出现，我们需要找到一个大小上限。就算没有活/活太多，也不会让机器崩溃。</runnable></p>
+<h2 id="起始点">起始点</h2>
+<p>首先不要忘记审视自己的系统和硬件。 比如：<br>
+数据库连接，你的池子里有一万个工人，但是你连接的数据库能不能扛住一万人同时找它呢。<br>
+一些第三方系统api根本支持不了或者有限制，这时候工人在多没用。</p>
+<p>最基本的，我们需要知道我们有多少个cpu。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> numOfCores = Runtime.getRuntime().availableProcessors();</span><br></pre></td></tr></table></figure>
+<p>一般环境下是这样的，但是对于容器来说，java8 不能准确的获取容器能使用的cpu。Java10+ 有特定的修复。reference: <a href="http://blog.gilliard.lol/2018/01/10/Java-in-containers-jdk10.html" target="_blank" rel="noopener">java in container</a></p>
+<p>在知道cpu核数的情况下，一般的公式如下：</p>
+<p><em><em>数量 = 核数</em> （1+ io时间/计算时间）</em>*</p>
+<p>举个例子， 2cpu io时间400ms 计算时间50ms  -&gt; 16 in thread pool  公式里的 （io时间/计算时间）简称为阻塞时间。系数接近0 的时候，系统每个cpu都用满了，这就是最大的thread 数量。如果系数越大 说明系统越多的是在做io，线程数量则可以更多。</p>
+<p>但是应用当中有可能有多个线程池。每个线程池对应的io/cpu time是不同的。所以公式可以更新为：</p>
+<p><em><em>数量 = 核数</em> cpu使用率（0-1)</em> (1+ io时间/计算时间)**</p>
+<p>另外一个概念： <a href="https://en.wikipedia.org/wiki/Little%27s_law" target="_blank" rel="noopener">little’s law</a> 可以帮助我们知道rps数据。<br>
+l = r*w<br>
+l: 同时处理的请求量<br>
+r: rate per second<br>
+w: 处理时间<br>
+-&gt; 16/0.45 = 35 request per second</p>
+<h2 id="总结">总结</h2>
+<p>这些公式是一个好的起始点，在通过审视子系统的连接处理能力，三方处理能力 和一些测试，才能发现真正的最优解。</p>
 
                 
 
@@ -481,13 +269,9 @@ GROUP BY bp.product_id;”</p>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/yulblog/article/Size/" data-toggle="tooltip" data-placement="top" title="Pool Size">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/yulblog/article/anti-pattern-sql/" data-toggle="tooltip" data-placement="top" title="Anti Pattern SQL">Next Post &rarr;</a>
+                            <a href="/yulblog/article/anti-pattern-sql-1/" data-toggle="tooltip" data-placement="top" title="Anti Pattern SQL">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -513,7 +297,7 @@ GROUP BY bp.product_id;”</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#anti-pattern-at-physcial-level"><span class="toc-nav-text">Anti Pattern At Physcial Level</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#numerical-precision"><span class="toc-nav-text">Numerical Precision</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#enum"><span class="toc-nav-text">ENUM</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#phantom-files"><span class="toc-nav-text">Phantom Files</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#too-many-index"><span class="toc-nav-text">Too Many Index</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#anti-pattern-on-query"><span class="toc-nav-text">Anti Pattern On Query</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null-value"><span class="toc-nav-text">NULL Value</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#groups"><span class="toc-nav-text">Groups</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#random"><span class="toc-nav-text">Random</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#full-text-search"><span class="toc-nav-text">Full Text Search</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#select-chain"><span class="toc-nav-text">Select Chain</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#useage-of"><span class="toc-nav-text">Useage of “*”</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#others"><span class="toc-nav-text">Others</span></a></li></ol></li></ol>     
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#怎么确定一个pool的大小上限"><span class="toc-nav-text">怎么确定一个pool的大小上限？</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#起始点"><span class="toc-nav-text">起始点</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结"><span class="toc-nav-text">总结</span></a></li></ol></li></ol>     
         
         </div>
       </aside>
@@ -533,7 +317,7 @@ GROUP BY bp.product_id;”</p>
                     <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/yulblog/tags/#SQL" title="SQL">SQL</a>
+                          <a class="tag" href="/yulblog/tags/#Thread" title="Thread">Thread</a>
                         
                     </div>
                 </section>
