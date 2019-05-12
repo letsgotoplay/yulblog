@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/yulblog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          JPAPro - Ground | 下地
+        
+    </title>
+
+    <link rel="canonical" href="https://letsgotoplay.github.io/yulblog/yulblog/article/JPAPro/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/yulblog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/yulblog/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/yulblog/css/highlight.css">
+
+    <link rel="stylesheet" href="/yulblog/css/widget.css">
+
+    <link rel="stylesheet" href="/yulblog/css/rocket.css">
+
+    <link rel="stylesheet" href="/yulblog/css/signature.css">
+
+    <link rel="stylesheet" href="/yulblog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('./../../img/default-bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/yulblog/tags/#JPA" title="JPA">JPA</a>
+                            
+                        </div>
+                        <h1>JPAPro</h1>
+                        <h2 class="subheading">quick guide</h2>
+                        <span class="meta">
+                            Posted by Yul on
+                            2019-05-12
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/yulblog/">Ground</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/yulblog/">Home</a>
+                    </li>
+                   
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/yulblog/tags/">Tags</a>
+                        </li>
+                    
+                     
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/yulblog/archive/">Archives</a>
+                        </li>
+                    
+                    
+
+                        
+                    
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/yulblog/about/">About</a>
+                        </li>
+                    
+                    
+
+                        
+                    
+
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="jpa-pro">JPA Pro</h1>
+<p>需要复习的老知识。快速走一遍。</p>
+<h2 id="annotations">annotations</h2>
+<p>jpa2.2 有一个@repeatable。有这个Mark的annotation可以看做是一个list可以重复在挂在属性或者class头上。</p>
+<p>如：<br>
+• AssociationOverride<br>
+• AttributeOverride<br>
+• Convert<br>
+• JoinColumn<br>
+• MapKeyJoinColumn<br>
+• NamedEntityGraph<br>
+• NamedNativeQuery<br>
+• NamedQuery<br>
+• NamedStoredProcedureQuery<br>
+• PersistenceContext<br>
+• PersistenceUnit<br>
+• PrimaryKeyJoinColumn<br>
+• SecondaryTable<br>
+• SqlResultSetMapping</p>
+<h2 id="orm">orm</h2>
+<p>column对property 有两种，一种放在property上一中设置在setting method上。有全局定义一种方式，再个别属性上可以override。<br>
+Table 和 Entity 有默认对应关系，e.g Employee-&gt;EMPLOYEE,属性名也有默认对应关系。 当是明文设定对应关系是一种好习惯。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"EMP"</span>, schema=<span class="string">"HR"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//provider specific</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"EMP"</span>, catalog=<span class="string">"HR"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// or provider specific</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"HR.EMP"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="基础属性">基础属性</h3>
+<p>lazy fetch</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Basic</span>(fetch=FetchType.LAZY)</span><br><span class="line"><span class="meta">@Column</span>(name=<span class="string">"COMM"</span>)</span><br><span class="line"><span class="keyword">private</span> String comments;</span><br></pre></td></tr></table></figure>
+<p>byte[] &amp; char[]  -&gt;  blob&amp;clob</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="meta">@Basic</span>(fetch=FetchType.LAZY)</span><br><span class="line"><span class="meta">@Lob</span> <span class="meta">@Column</span>(name=<span class="string">"PIC"</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">byte</span>[] picture;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>enum -&gt; integer 0…n (favorable)| string <name></name></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Enumerated</span>(EnumType.ORDINAL)</span><br><span class="line"><span class="meta">@Enumerated</span>(EnumType.STRING)</span><br></pre></td></tr></table></figure>
+<p>date to five types:<br>
+java.sql.Date, java.sql.Time, java.sql.Timestamp,java.util.Date and java.util.Calendar.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Temporal</span>(TemporalType.DATE)</span><br><span class="line"><span class="keyword">private</span> Calendar dob;</span><br></pre></td></tr></table></figure>
+<p>extra <strong>Transient</strong> type to hide the mapping relationship to table.</p>
+<h3 id="主键">主键</h3>
+<p>主键生成  -&gt; auto,table,sequence.  -&gt; allocation size + init value</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span> <span class="meta">@GeneratedValue</span>(strategy=GenerationType.AUTO)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="meta">@Id</span> <span class="meta">@GeneratedValue</span>(strategy=GenerationType.TABLE)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"></span><br><span class="line"><span class="meta">@TableGenerator</span>(name=<span class="string">"Address_Gen"</span>,</span><br><span class="line">table=<span class="string">"ID_GEN"</span>,</span><br><span class="line">pkColumnName=<span class="string">"GEN_NAME"</span>,</span><br><span class="line">valueColumnName=<span class="string">"GEN_VAL"</span>,</span><br><span class="line">pkColumnValue=<span class="string">"Addr_Gen"</span>,</span><br><span class="line">initialValue=<span class="number">10000</span>,</span><br><span class="line">allocationSize=<span class="number">100</span>)</span><br><span class="line"><span class="meta">@Id</span> <span class="meta">@GeneratedValue</span>(generator=<span class="string">"Address_Gen"</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SequenceGenerator</span>(name=<span class="string">"Emp_Gen"</span>, sequenceName=<span class="string">"Emp_Seq"</span>)</span><br><span class="line"><span class="meta">@Id</span> <span class="meta">@GeneratedValue</span>(generator=<span class="string">"Emp_Gen"</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> getId;</span><br></pre></td></tr></table></figure>
+<h3 id="关系">关系</h3>
+<p>方向： 单向，双向<br>
+关系： 1-1   1-*   *-*</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@JoinColumn annotation means employee table has the dept_id foreign key.</span></span><br><span class="line"><span class="comment">//also works for 1 to 1</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="meta">@ManyToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"DEPT_ID"</span>)</span><br><span class="line"><span class="keyword">private</span> Department department;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//双向</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@OneToMany</span>(mappedBy=<span class="string">"department"</span>)</span><br><span class="line"><span class="keyword">private</span> Collection&lt;Employee&gt; employees;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1 to 1</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@OneToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"PSPACE_ID"</span>)</span><br><span class="line"><span class="keyword">private</span> ParkingSpace parkingSpace;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双向 1 to 1</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParkingSpace</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> lot;</span><br><span class="line"><span class="keyword">private</span> String location;</span><br><span class="line"><span class="meta">@OneToOne</span>(mappedBy=<span class="string">"parkingSpace"</span>)</span><br><span class="line"><span class="keyword">private</span> Employee employee;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// many to many with join table</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@ManyToMany</span></span><br><span class="line"><span class="meta">@JoinTable</span>(name=<span class="string">"EMP_PROJ"</span>,</span><br><span class="line">joinColumns=<span class="meta">@JoinColumn</span>(name=<span class="string">"EMP_ID"</span>),</span><br><span class="line">inverseJoinColumns=<span class="meta">@JoinColumn</span>(name=<span class="string">"PROJ_ID"</span>))</span><br><span class="line"><span class="keyword">private</span> Collection&lt;Project&gt; projects;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// single direction one to many</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@OneToMany</span></span><br><span class="line"><span class="meta">@JoinTable</span>(name=<span class="string">"EMP_PHONE"</span>,</span><br><span class="line">joinColumns=<span class="meta">@JoinColumn</span>(name=<span class="string">"EMP_ID"</span>),</span><br><span class="line">inverseJoinColumns=<span class="meta">@JoinColumn</span>(name=<span class="string">"PHONE_ID"</span>))</span><br><span class="line"><span class="keyword">private</span> Collection&lt;Phone&gt; phones;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// relationships can set fetch strategy to be eager / lazy. default to eager</span></span><br><span class="line"><span class="meta">@OneToOne</span>(fetch=FetchType.LAZY)</span><br></pre></td></tr></table></figure>
+<h3 id="embedded-oject">embedded oject</h3>
+<p>对于程序来说需要oop/ddd， 所以有embedded object。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Embeddable</span> <span class="meta">@Access</span>(AccessType.FIELD)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> String street;</span><br><span class="line"><span class="keyword">private</span> String city;</span><br><span class="line"><span class="keyword">private</span> String state;</span><br><span class="line"><span class="meta">@Column</span>(name=<span class="string">"ZIP_CODE"</span>)</span><br><span class="line"><span class="keyword">private</span> String zip;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//use attribute override to reset mapping column name for one shared embeded object</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> salary;</span><br><span class="line"><span class="meta">@Embedded</span></span><br><span class="line"><span class="meta">@AttributeOverrides</span>(&#123;</span><br><span class="line"><span class="meta">@AttributeOverride</span>(name=<span class="string">"state"</span>, column=<span class="meta">@Column</span>(name=<span class="string">"PROVINCE"</span>)),</span><br><span class="line"><span class="meta">@AttributeOverride</span>(name=<span class="string">"zip"</span>, column=<span class="meta">@Column</span>(name=<span class="string">"POSTAL_CODE"</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">private</span> Address address;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@Embedded</span></span><br><span class="line"><span class="keyword">private</span> Address address;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="advanced">Advanced</h2>
+<ol>
+<li>对于case sensitive的表来说是有区别的：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Table</span>(name=<span class="string">"\"Employee\""</span>)</span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"\"EMPLOYEE\""</span>)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>属性转化 jpa 2.1+ ：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AttributeConverter</span>&lt;<span class="title">X</span>,<span class="title">Y</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Y <span class="title">convertToDatabaseColumn</span> <span class="params">(X attribute)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> X <span class="title">convertToEntityAttribute</span> <span class="params">(Y dbData)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Converter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BooleanToIntegerConverter</span> <span class="keyword">implements</span> <span class="title">AttributeConverter</span>&lt;<span class="title">Boolean</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">convertToDatabaseColumn</span> <span class="params">(Boolean attrib)</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> (attrib ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Boolean <span class="title">convertToEntityAttribute</span> <span class="params">(Integer dbData)</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> (dbData &gt; <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="comment">//entity column</span></span><br><span class="line"><span class="meta">@Convert</span>(converter=BooleanToIntegerConverter.class)</span><br><span class="line"><span class="keyword">private</span> Boolean bonded;</span><br><span class="line"></span><br><span class="line"><span class="comment">// embedded attributes</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="meta">@Convert</span>(converter=BooleanToIntegerConverter.class,</span><br><span class="line">attributeName=<span class="string">"bonded"</span>)</span><br><span class="line"><span class="keyword">private</span> SecurityInfo securityInfo;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Embeddable</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityInfo</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Boolean bonded;</span><br><span class="line"> <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局convert</span></span><br><span class="line"><span class="meta">@Converter</span>(autoApply=<span class="keyword">true</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">URLConverter</span> <span class="keyword">implements</span> <span class="title">AttributeConverter</span>&lt;<span class="title">URL</span>,<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"> <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭全局convert</span></span><br><span class="line"><span class="meta">@Convert</span>(disableConversion=<span class="keyword">true</span>)</span><br><span class="line">URL homePage;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>embedded object</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// embedded object has relationships </span></span><br><span class="line"><span class="meta">@Embeddable</span> <span class="meta">@Access</span>(AccessType.FIELD)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContactInfo</span> </span>&#123;</span><br><span class="line"><span class="meta">@Embedded</span></span><br><span class="line"><span class="keyword">private</span> Address residence;</span><br><span class="line"><span class="meta">@ManyToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"PRI_NUM"</span>)</span><br><span class="line"><span class="keyword">private</span> Phone primaryPhone;</span><br><span class="line"><span class="meta">@ManyToMany</span> <span class="meta">@MapKey</span>(name=<span class="string">"type"</span>)</span><br><span class="line"><span class="meta">@JoinTable</span>(name=<span class="string">"EMP_PHONES"</span>)</span><br><span class="line"><span class="keyword">private</span> Map&lt;String, Phone&gt; phones;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//overriding attributes</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="meta">@Embedded</span></span><br><span class="line"><span class="meta">@AttributeOverride</span>(name=<span class="string">"address.zip"</span>, column=<span class="meta">@Column</span>(name=<span class="string">"ZIP"</span>))</span><br><span class="line"><span class="meta">@AssociationOverrides</span>(&#123;</span><br><span class="line"><span class="meta">@AssociationOverride</span>(name=<span class="string">"primaryPhone"</span>,</span><br><span class="line">joinColumns=<span class="meta">@JoinColumn</span>(name=<span class="string">"EMERG_PHONE"</span>)),</span><br><span class="line"><span class="meta">@AssociationOverride</span>(name=<span class="string">"phones"</span>,</span><br><span class="line">joinTable=<span class="meta">@JoinTable</span>(name=<span class="string">"CUST_PHONE"</span>))&#125;)</span><br><span class="line"><span class="keyword">private</span> ContactInfo contactInfo;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>复合键</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//country + id 复合主键</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@IdClass</span>(EmployeeId.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> String country;</span><br><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="meta">@Column</span>(name=<span class="string">"EMP_ID"</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> salary;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeId</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> String country;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">EmployeeId id = <span class="keyword">new</span> EmployeeId(country, id);</span><br><span class="line">Employee emp = em.find(Employee.class, id);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// embeded id</span></span><br><span class="line"><span class="meta">@Embeddable</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeId</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> String country;</span><br><span class="line"><span class="meta">@Column</span>(name=<span class="string">"EMP_ID"</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">EmployeeId</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">EmployeeId</span><span class="params">(String country, <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.country = country;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@EmbeddedId</span> <span class="keyword">private</span> EmployeeId id;</span><br><span class="line"><span class="comment">//... </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>映射属性</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//read only</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="meta">@Column</span>(insertable=<span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="meta">@Column</span>(insertable=<span class="keyword">false</span>, updatable=<span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@Column</span>(insertable=<span class="keyword">false</span>, updatable=<span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> salary;</span><br><span class="line"><span class="meta">@ManyToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"DEPT_ID"</span>, insertable=<span class="keyword">false</span>, updatable=<span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> Department department;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//attributes can be optional. if optional is set to true, then the column in the database must also be nullable.</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="meta">@ManyToOne</span>(optional=<span class="keyword">false</span>)</span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"DEPT_ID"</span>, insertable=<span class="keyword">false</span>, updatable=<span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> Department department;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>复合join</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//multiple join columns</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@IdClass</span>(EmployeeId.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> String country;</span><br><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="meta">@Column</span>(name=<span class="string">"EMP_ID"</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="meta">@ManyToOne</span></span><br><span class="line"><span class="meta">@JoinColumns</span>(&#123;</span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"MGR_COUNTRY"</span>, referencedColumnName=<span class="string">"COUNTRY"</span>),</span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"MGR_ID"</span>, referencedColumnName=<span class="string">"EMP_ID"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">private</span> Employee manager;</span><br><span class="line"><span class="meta">@OneToMany</span>(mappedBy=<span class="string">"manager"</span>)</span><br><span class="line"><span class="keyword">private</span> Collection&lt;Employee&gt; directs;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// orphanRemoval option is defined on the @OneToOne and @OneToMany relationship annotations。</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="meta">@OneToMany</span>(orphanRemoval=<span class="keyword">true</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;Evaluation&gt; evals;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// join table extra state</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="meta">@OneToMany</span>(mappedBy=<span class="string">"employee"</span>)</span><br><span class="line"><span class="keyword">private</span> Collection&lt;ProjectAssignment&gt; assignments;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Project</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="meta">@OneToMany</span>(mappedBy=<span class="string">"project"</span>)</span><br><span class="line"><span class="keyword">private</span> Collection&lt;ProjectAssignment&gt; assignments;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"EMP_PROJECT"</span>)</span><br><span class="line"><span class="meta">@IdClass</span>(ProjectAssignmentId.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProjectAssignment</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="meta">@ManyToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"EMP_ID"</span>)</span><br><span class="line"><span class="keyword">private</span> Employee employee;</span><br><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="meta">@ManyToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"PROJECT_ID"</span>)</span><br><span class="line"><span class="keyword">private</span> Project project;</span><br><span class="line"><span class="meta">@Temporal</span>(TemporalType.DATE)</span><br><span class="line"><span class="meta">@Column</span>(name=<span class="string">"START_DATE"</span>, updatable=<span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> Date startDate;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProjectAssignmentId</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> employee;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> project;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>多表对应一个entity</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//两个表 一个entity</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"EMP"</span>)</span><br><span class="line"><span class="meta">@SecondaryTable</span>(name=<span class="string">"EMP_ADDRESS"</span>, pkJoinColumns=<span class="meta">@PrimaryKeyJoinColumn</span>(name=<span class="string">"EMP_ID"</span>))</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> salary;</span><br><span class="line"><span class="meta">@Column</span>(table=<span class="string">"EMP_ADDRESS"</span>)</span><br><span class="line"><span class="keyword">private</span> String street;</span><br><span class="line"><span class="meta">@Column</span>(table=<span class="string">"EMP_ADDRESS"</span>)</span><br><span class="line"><span class="keyword">private</span> String city;</span><br><span class="line"><span class="meta">@Column</span>(table=<span class="string">"EMP_ADDRESS"</span>)</span><br><span class="line"><span class="keyword">private</span> String state;</span><br><span class="line"><span class="meta">@Column</span>(name=<span class="string">"ZIP_CODE"</span>, table=<span class="string">"EMP_ADDRESS"</span>)</span><br><span class="line"><span class="keyword">private</span> String zip;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 两个表 ，一个 entity， embedded</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"EMP"</span>)</span><br><span class="line"><span class="meta">@SecondaryTable</span>(name=<span class="string">"EMP_ADDRESS"</span>,</span><br><span class="line">pkJoinColumns=<span class="meta">@PrimaryKeyJoinColumn</span>(name=<span class="string">"EMP_ID"</span>))</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line"><span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> salary;</span><br><span class="line"><span class="meta">@Embedded</span></span><br><span class="line"><span class="meta">@AttributeOverrides</span>(&#123; <span class="meta">@AttributeOverride</span>(name=<span class="string">"street"</span>, column=<span class="meta">@Column</span>(table=<span class="string">"EMP_ADDRESS"</span>)),</span><br><span class="line"><span class="meta">@AttributeOverride</span>(name=<span class="string">"city"</span>, column=<span class="meta">@Column</span>(table=<span class="string">"EMP_ADDRESS"</span>)),</span><br><span class="line"><span class="meta">@AttributeOverride</span>(name=<span class="string">"state"</span>, column=<span class="meta">@Column</span>(table=<span class="string">"EMP_ADDRESS"</span>)),</span><br><span class="line"><span class="meta">@AttributeOverride</span>(name=<span class="string">"zip"</span>,column=<span class="meta">@Column</span>(name=<span class="string">"ZIP_CODE"</span>, table=<span class="string">"EMP_ADDRESS"</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">private</span> Address address;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>继承</li>
+</ol>
+<ul>
+<li>table per class</li>
+<li>joined</li>
+<li>single table for all</li>
+</ul>
+<p>reference：<a href="https://letsgotoplay.github.io/yulblog/article/anti-pattern-sql/">anti-sql-pattern #multiple inheritance</a></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/yulblog/article/Size/" data-toggle="tooltip" data-placement="top" title="Pool Size">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#jpa-pro"><span class="toc-nav-text">JPA Pro</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#annotations"><span class="toc-nav-text">annotations</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#orm"><span class="toc-nav-text">orm</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#advanced"><span class="toc-nav-text">Advanced</span></a></li></ol></li></ol>     
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/yulblog/tags/#JPA" title="JPA">JPA</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://frienda.org" target="_blank">Dummy Friend A</a></li>
+                    
+                        <li><a href="#" target="_blank">Dummy Friends C</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: '^'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Dummy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Dummy">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yul 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Customized by <a href="https://letsgotoplay.github.io/yulblog">Yul</a>   
+                    <br>
+                    <a class="github-button" href="https://github.com/letsgotoplay" aria-label="Follow @Yul on GitHub">Follow</a>
+
+                    <a class="github-button" href="https://github.com/letsgotoplay/" data-icon="octicon-star" aria-label="Star letsgotoplay/ on GitHub">Star</a>
+                   <!-- <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=letsgotoplay&repo=&type=&count=" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/yulblog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/yulblog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/yulblog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://letsgotoplay.github.io/yulblog/yulblog/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/yulblog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/yulblog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<!-- <img src="https://letsgotoplay.github.io/yulblog/yulblog/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
