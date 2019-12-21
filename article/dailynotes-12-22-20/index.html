@@ -235,9 +235,9 @@
                 post-container">
 
                 <p>#2019-12-22 Daily Notes</p>
-<p>##Stream recursion</p>
+<h2 id="stream-recursion">Stream recursion</h2>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//stream list recursively into tree nodes -&gt;</span></span><br><span class="line">Class TreeNode&#123;</span><br><span class="line">	List&lt;TreeNode&gt; childNodes;</span><br><span class="line">    <span class="function">Stream&lt;TreeNode&gt; <span class="title">streamNodes</span><span class="params">()</span></span>&#123;</span><br><span class="line">	    Stream.concat(Stream.of(<span class="keyword">this</span>),<span class="keyword">this</span>.childNodes.stream().flatMap(TreeNode::StreamNodes));</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##Better Null Checking</p>
+<h2 id="better-null-checking">Better Null Checking</h2>
 <p><a href="https://codeburst.io/better-null-checking-in-java-369f1701155f" target="_blank" rel="noopener">Blog Link</a><br>
 Utility that can save a lot of null check in stream API pattern</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String zipCode = NullSafe.of(user)</span><br><span class="line">                   .call(User::addresses)</span><br><span class="line">                   .call(UserAddresses::billingAddress)</span><br><span class="line">                   .call(Address::zipCode)</span><br><span class="line">                   .get();</span><br></pre></td></tr></table></figure>
@@ -283,7 +283,7 @@ More to see!</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#cola"><span class="toc-nav-text">COLA</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#whether-is-java8"><span class="toc-nav-text">Whether is JAVA8</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rust-webassembly"><span class="toc-nav-text">RUST + WebAssembly</span></a></li></ol>     
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#stream-recursion"><span class="toc-nav-text">Stream recursion</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#better-null-checking"><span class="toc-nav-text">Better Null Checking</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#cola"><span class="toc-nav-text">COLA</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#whether-is-java8"><span class="toc-nav-text">Whether is JAVA8</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rust-webassembly"><span class="toc-nav-text">RUST + WebAssembly</span></a></li></ol>     
         
         </div>
       </aside>
