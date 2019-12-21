@@ -133,14 +133,17 @@
                     
 
                         
+                    
+
+                        
                         <li>
                             <a href="/yulblog/tags/">Tags</a>
                         </li>
                     
+                     
                     
 
                         
-                     
                     
 
                         
@@ -155,15 +158,6 @@
 
                         
                     
-
-                        
-                    
-                    
-
-                        
-                    
-
-                        
                     
 
                         
@@ -174,6 +168,12 @@
                             <a href="/yulblog/about/">About</a>
                         </li>
                     
+                    
+
+                        
+                    
+
+                        
                     
                 </ul>
             </div>
@@ -220,19 +220,21 @@
             <!-- 标签云 -->
             <div id="tag_cloud" class="tags">
                 
+                    <a href="#tooltips" title="tooltips" rel="1">tooltips</a>
+                
                     <a href="#JPA" title="JPA" rel="1">JPA</a>
                 
                     <a href="#Principle" title="Principle" rel="1">Principle</a>
-                
-                    <a href="#tooltips" title="tooltips" rel="1">tooltips</a>
                 
                     <a href="#Thread" title="Thread" rel="1">Thread</a>
                 
                     <a href="#SQL" title="SQL" rel="2">SQL</a>
                 
-                    <a href="#spring" title="spring" rel="3">spring</a>
+                    <a href="#dailynotes" title="dailynotes" rel="1">dailynotes</a>
                 
                     <a href="#principles" title="principles" rel="1">principles</a>
+                
+                    <a href="#spring" title="spring" rel="3">spring</a>
                 
                     <a href="#DDD" title="DDD" rel="1">DDD</a>
                 
@@ -240,6 +242,28 @@
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="tooltips">
+                    <span class="tag-text">tooltips</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/yulblog/article/Full-Eclipse-Gears/">
+                        <h2 class="post-title">
+                            Eclipse合金装备
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="JPA">
@@ -280,28 +304,6 @@
                      <a href="/yulblog/article/Principles/">
                         <h2 class="post-title">
                             Principles
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="tooltips">
-                    <span class="tag-text">tooltips</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/yulblog/article/Full-Eclipse-Gears/">
-                        <h2 class="post-title">
-                            Eclipse合金装备
                         </h2>
                         
                     </a>
@@ -379,8 +381,8 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="spring">
-                    <span class="tag-text">spring</span>
+                <span class="fa fa-tag listing-seperator" id="dailynotes">
+                    <span class="tag-text">dailynotes</span>
                 </span>
                 
                   <!-- <li class="listing-item">
@@ -388,15 +390,48 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/yulblog/article/看建筑画图纸-三/">
+                     <a href="/yulblog/article/dailynotes-12-22-20/">
                         <h2 class="post-title">
-                            看建筑画图纸-三
+                            dailynotes-12-22-20
                         </h2>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
                 </div>
                 <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="principles">
+                    <span class="tag-text">principles</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/yulblog/article/lifeprinciple/">
+                        <h2 class="post-title">
+                            Life Principle
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                After reading principles by ray dalio
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="spring">
+                    <span class="tag-text">spring</span>
+                </span>
                 
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
@@ -428,26 +463,15 @@
                 </div>
                 <hr>
                 
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="principles">
-                    <span class="tag-text">principles</span>
-                </span>
-                
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/yulblog/article/lifeprinciple/">
+                     <a href="/yulblog/article/看建筑画图纸-三/">
                         <h2 class="post-title">
-                            Life Principle
+                            看建筑画图纸-三
                         </h2>
-                        
-                            <h3 class="post-subtitle">
-                                After reading principles by ray dalio
-                            </h3>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
