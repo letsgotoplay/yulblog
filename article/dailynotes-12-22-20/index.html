@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          dailynotes-12-22-20 - Ground | 下地
+          Ground | 下地
         
     </title>
 
@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('./../../img/default-bg.jpg')
+            background-image: url('')
             /*post*/
         
     }
@@ -86,10 +86,8 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/yulblog/tags/#dailynotes" title="dailynotes">dailynotes</a>
-                            
                         </div>
-                        <h1>dailynotes-12-22-20</h1>
+                        <h1></h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Yul on
@@ -234,7 +232,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="2019-12-22-daily-notes">2019-12-22 Daily Notes</h1>
+                <hr>
+<p>title: dailynotes-12-22-2019<br>
+catalog: true<br>
+header-img: ./…/…/img/default-bg.jpg<br>
+date: 2019-12-22T00:01:20.000Z<br>
+subtitle: null<br>
+tags: dailynotes</p>
+<hr>
+<h1 id="2019-12-22-daily-notes">2019-12-22 Daily Notes</h1>
 <h2 id="stream-recursion">Stream recursion</h2>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//stream list recursively into tree nodes -&gt;</span></span><br><span class="line">Class TreeNode&#123;</span><br><span class="line">	List&lt;TreeNode&gt; childNodes;</span><br><span class="line">    <span class="function">Stream&lt;TreeNode&gt; <span class="title">streamNodes</span><span class="params">()</span></span>&#123;</span><br><span class="line">	    Stream.concat(Stream.of(<span class="keyword">this</span>),<span class="keyword">this</span>.childNodes.stream().flatMap(TreeNode::StreamNodes));</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="better-null-checking">Better Null Checking</h2>
@@ -254,6 +260,10 @@ More to see!</p>
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/yulblog/article/dailynotes-12-23-2019/" data-toggle="tooltip" data-placement="top" title="dailynotes-12-23-2019">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -278,17 +288,6 @@ More to see!</p>
             <!-- Tabe of Content -->
             <!-- Table of Contents -->
 
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
-        
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2019-12-22-daily-notes"><span class="toc-nav-text">2019-12-22 Daily Notes</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#stream-recursion"><span class="toc-nav-text">Stream recursion</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#better-null-checking"><span class="toc-nav-text">Better Null Checking</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#cola"><span class="toc-nav-text">COLA</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#whether-is-java8"><span class="toc-nav-text">Whether is JAVA8</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rust-webassembly"><span class="toc-nav-text">RUST + WebAssembly</span></a></li></ol></li></ol>     
-        
-        </div>
-      </aside>
-    
-
                 
             <!-- Sidebar Container -->
             <div class="
@@ -303,8 +302,6 @@ More to see!</p>
                     <h5><a href="/yulblog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/yulblog/tags/#dailynotes" title="dailynotes">dailynotes</a>
-                        
                     </div>
                 </section>
                 
